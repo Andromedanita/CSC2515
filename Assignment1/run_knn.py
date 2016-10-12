@@ -50,7 +50,7 @@ def run_knn(k, train_data, train_labels, valid_data):
 
             
     train_labels = train_labels.reshape(-1)
-    #valid_labels = train_labels[nearest]
+    #valid_labels = train_labels[nearest_indx]
     valid_labels = nearest  
     
     # note this only works for binary labels
