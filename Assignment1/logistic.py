@@ -55,23 +55,17 @@ def evaluate(targets, y):
     boundary = 0.5
 
     y = np.array(y)
-    
-    '''
-    for i in range(len(y)):
-        if y[i] < boundary:
-            y[i] = 0.
-        else:
-            y[i] = 1.
-    '''        
     y[y>=boundary] = 1.0
     y[y<boundary]  = 0.0
 
+    y = np.array(y)
     # checking similarities between prediction and target
     num_correct = 0
 
     '''
     for i in range(len(y)):
         if (targets[i][0] == y[i]):
+            print "i inside = ", i
             num_correct += 1
     '''
     num_correct = np.sum(targets == y)
@@ -115,13 +109,20 @@ def logistic(weights, data, targets, hyperparameters):
         for i in range(len(data)):
             f += -targets[i] * np.log(y[i]) - (1-targets[i]) * np.log(1-y[i]) # f values 
 
-        for j in range(len(weights)-1):
+        #for j in range(len(weights)-1):
+        for j in range(len(weights)-1): 
             weights_sum = 0
             for i in range(len(data)):
                 x = data[i][j]
-                #print "i, j = ", i, j
-                weights_sum +=  x * (targets[i] - y[i])
+                weights_sum += x * (targets[i] - y[i])
+
             df[j] = weights_sum
+
+        bias_val = 0    
+        for i in range(len(data)):
+            bias_val    += targets[i] - y[i]
+        df[len(weights)-1] = bias_val
+
 
     df = np.array([df]).T
     return f, df, y
