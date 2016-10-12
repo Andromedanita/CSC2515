@@ -6,7 +6,6 @@ from logistic   import *
 def run_logistic_regression(hyperparameters):
     # TODO specify training data
     train_inputs, train_targets = load_train()
-
     valid_inputs, valid_targets = load_valid()
 
     # N is number of examples; M is the number of features per example.
@@ -14,7 +13,8 @@ def run_logistic_regression(hyperparameters):
 
     # Logistic regression weights
     # TODO:Initialize to random weights here.
-    weights = [...]
+    #weights     = np.random.normal(0, 1./hyperparameters['alpha'], M+1)
+    weights = np.random.rand(M+1)
 
     # Verify that your logistic function produces the right gradient.
     # diff should be very close to 0.
@@ -51,12 +51,13 @@ def run_logistic_regression(hyperparameters):
     return logging
 
 def run_check_grad(hyperparameters):
-    """Performs gradient check on logistic function.
+    """
+    Performs gradient check on logistic function.
     """
 
     # This creates small random data with 7 examples and 
     # 9 dimensions and checks the gradient on that data.
-    num_examples = 7
+    num_examples   = 7
     num_dimensions = 9
 
     weights = np.random.randn(num_dimensions+1, 1)
@@ -75,10 +76,10 @@ def run_check_grad(hyperparameters):
 if __name__ == '__main__':
     # TODO: Set hyperparameters
     hyperparameters = {
-                    'learning_rate': [...],
-                    'weight_regularization': [...], # boolean, True for using Gaussian prior on weights
-                    'num_iterations': [...],
-                    'weight_decay': [...] # related to standard deviation of weight prior 
+                    'learning_rate': -2.,
+                    'weight_regularization': False, # boolean, True for using Gaussian prior on weights
+                    'num_iterations': 500,
+                    'weight_decay': 1. # related to standard deviation of weight prior 
                     }
 
     # average over multiple runs
@@ -88,5 +89,5 @@ if __name__ == '__main__':
         logging += run_logistic_regression(hyperparameters)
     logging /= num_runs
 
-    # TODO generate plots
-    [...]
+    # TODO generate
+    #[...]

@@ -1,7 +1,7 @@
 """ Methods for doing logistic regression."""
 
-import numpy as np
-from utils import sigmoid
+import numpy as     np
+from   utils import sigmoid
 
 
 def logistic_predict(weights, data):
@@ -19,14 +19,20 @@ def logistic_predict(weights, data):
     Outputs:
         y:          :N x 1 vector of probabilities of being second class. This is the output of the classifier.
     """
-    yarray = np.zeros(np.shape(data)[0])
+
+    '''
     # TODO: Finish this function
+    yarray = np.zeros(np.shape(data)[0])
+    
     for i in range(np.shape(data)[0]):
-        val = np.dot(weights.T[1:],data[i]) + weights.T[0]
-        yarray[i] = sigmoid(-val) # maybe sigmoid function- second class=2s or 8s
+        val       = np.dot(weights[:-1].T,data[i]) + weights[-1] #last element is w0 (bias)
+        yarray[i] = np.exp(-val)/(1+np.exp(-val)) # maybe sigmoid function- second class=2s or 8s
 
     return yarray
-
+    '''
+    dot_vals = map(lambda x: np.dot(weights[:-1].T, x) + weights[-1], data)
+    y        = map(lambda x: np.exp(-x)/(1+np.exp(-x)), dot_vals)
+    return y 
 
 def evaluate(targets, y):
     """
@@ -38,11 +44,40 @@ def evaluate(targets, y):
         ce           : (scalar) Cross entropy. CE(p, q) = E_p[-log q]. Here we want to compute CE(targets, y)
         frac_correct : (scalar) Fraction of inputs classified correctly.
     """
-    # TODO: Finish this function
-    #ce = 
-    #frac_correct = 
+    
+    ce = 0
+    for i in range(len(targets)):
+        #ce += -np.log(targets[i] * y[i]) - np.log((1-targets[i])*(1-y[i])) # f values 
+        ce += -targets[i] * np.log(y[i]) - (1-targets[i]) * np.log(1-y[i])
+        
+    # makign predictions smaller than 0.5 to be 0
+    # and predictions larger than 0.5 to be 1
+    boundary = 0.5
 
-    #return ce, frac_correct
+    y = np.array(y)
+    
+    '''
+    for i in range(len(y)):
+        if y[i] < boundary:
+            y[i] = 0.
+        else:
+            y[i] = 1.
+    '''        
+    y[y>=boundary] = 1.0
+    y[y<boundary]  = 0.0
+
+    # checking similarities between prediction and target
+    num_correct = 0
+
+    '''
+    for i in range(len(y)):
+        if (targets[i][0] == y[i]):
+            num_correct += 1
+    '''
+    num_correct = np.sum(targets == y)
+    
+    frac_correct = float(num_correct)/len(y) 
+    return ce, frac_correct
 
 
 def logistic(weights, data, targets, hyperparameters):
@@ -71,13 +106,24 @@ def logistic(weights, data, targets, hyperparameters):
 
     if hyperparameters['weight_regularization'] is True:
         f, df = logistic_pen(weights, data, targets, hyperparameters)
+        
     else:
         # TODO: compute f and df without regularization
-        #wj1 = wj - hyperparameters['lambda']* np.sum((y - target)*data) 
-        df = hyperparameters['lambda']* np.sum((y - target)*data)
-        z  = weights[1:]*data + weights[0]
-        f  = np.sum(target * z) + np.sum(np.log(1+np.exp(-z) ) )
-        
+
+        f = 0
+        df   = np.zeros(len(weights))
+        for i in range(len(data)):
+            f += -targets[i] * np.log(y[i]) - (1-targets[i]) * np.log(1-y[i]) # f values 
+
+        for j in range(len(weights)-1):
+            weights_sum = 0
+            for i in range(len(data)):
+                x = data[i][j]
+                #print "i, j = ", i, j
+                weights_sum +=  x * (targets[i] - y[i])
+            df[j] = weights_sum
+
+    df = np.array([df]).T
     return f, df, y
 
 
