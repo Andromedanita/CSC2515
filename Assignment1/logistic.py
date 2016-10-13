@@ -30,15 +30,18 @@ def logistic_predict(weights, data):
 
     return yarray
     '''
-    #dot_vals = map(lambda x: np.dot(weights[:-1].T, x) + weights[-1], data)
-    #y        = map(lambda x: np.exp(-x)/(1+np.exp(-x)), dot_vals)
-
+    # adding 1 to the end of each row (to each image as its 785th element)
     data = np.insert(data, np.shape(data)[1], 1, axis=1)
+
+    # dot product of w.x including w0 because I added 1 to the data set
     z    = np.dot(weights.T, data.T)
 
+    # sigmoid for P(C=1 | x,w)
     y    = np.exp(-z)/(1+np.exp(-z))
+
+    # transposing it to make the shape correct
     y    = y.T
-    print "y is", np.shape(y)
+    
     return y 
 
 def evaluate(targets, y):
@@ -51,18 +54,16 @@ def evaluate(targets, y):
         ce           : (scalar) Cross entropy. CE(p, q) = E_p[-log q]. Here we want to compute CE(targets, y)
         frac_correct : (scalar) Fraction of inputs classified correctly.
     """
-    
-    ce = 0
 
+    # calculating corss-entropy
+    ce = 0
     for i in range(len(targets)):
         ce += -(targets[i] * np.log(y[i])) - ((1-targets[i]) * np.log(1-y[i]))
-
     
-    # makign predictions smaller than 0.5 to be 0
+    # making predictions smaller than 0.5 to be 0
     # and predictions larger than 0.5 to be 1
-    boundary = 0.5
-
-    y = np.array(y)
+    boundary       = 0.5
+    y              = np.array(y)
     y[y>=boundary] = 1.0
     y[y<boundary]  = 0.0
 
@@ -70,15 +71,14 @@ def evaluate(targets, y):
     # checking similarities between prediction and target
     num_correct = 0
 
-
+    # counting the number of correct predictions with respect to targets
     for i in range(len(y)):
         if (targets[i][0] == y[i]):
-            #print "i inside = ", i
             num_correct += 1
-    #num_correct = np.sum(targets == y)
 
+    # fraction of correct predictions
     frac_correct = float(num_correct)/len(y) 
-    return ce[0], frac_correct
+    return ce[0], frac_correct # ce[0] is the correct shape that works with other functions
 
 
 def logistic(weights, data, targets, hyperparameters):
@@ -103,40 +103,41 @@ def logistic(weights, data, targets, hyperparameters):
         y:       N x 1 vector of probabilities.
     """
 
+    # predictions from sigmoid function for P(C=1| x,w)
     y = logistic_predict(weights, data)
-    print np.shape(y), len(y)
-    
-    
+
+    # conditions for using logistic regression or regularization
     if hyperparameters['weight_regularization'] is True:
         f, df = logistic_pen(weights, data, targets, hyperparameters)
         
     else:
-        # TODO: compute f and df without regularization
+        # compute f and df without regularization
 
-        f = 0
-        df   = np.zeros(len(weights))
+        f  = 0
+        df = np.zeros(len(weights))
         for i in range(len(data)):
             f += -targets[i] * np.log(y[i]) - (1-targets[i]) * np.log(1-y[i]) # f values 
 
         #for j in range(len(weights)-1):
         for j in range(len(weights)-1): 
-            weights_sum = 0
+            weights_sum = 0 # initial value is 0
+            # for every image (i)
             for i in range(len(data)):
                 x = data[i][j]
-                weights_sum += x * (targets[i] - y[i])
+                weights_sum += x * (targets[i] - y[i]) #sum of x_i * (t_i -y_i)
 
             df[j] = weights_sum
 
+        # doing same thing for bias (last element)    
         bias_val = 0    
         for i in range(len(data)):
             bias_val    += targets[i] - y[i]
         df[len(weights)-1] = bias_val
 
-        
+    # making df in correct shape for the rest of the functions    
     df = np.array([df]).T
-    #print "f", f[0]
-    #print type(f)
-    return f[0], df, y
+
+    return f[0], df, y # f[0] so that it returns one number instead of a list
 
 
 def logistic_pen(weights, data, targets, hyperparameters):
