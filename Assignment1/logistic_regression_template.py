@@ -33,10 +33,18 @@ def run_logistic_regression(hyperparameters):
         if np.isnan(f) or np.isinf(f):
             raise ValueError("nan/inf error")
 
+        print "iteration:", t
+        print "first weight: ",np.shape(weights)
         # update parameters
-        weights = weights - hyperparameters['learning_rate'] * df / N
+        print "multiply", np.shape(hyperparameters['learning_rate'] * df/N )
+        
+        weights = weights - (hyperparameters['learning_rate'] * df / N)[:,0]
 
+        #print "iteration:", t
+        print "second weight: ", np.shape(weights)
+        print "validation: ", np.shape(valid_inputs)
         # Make a prediction on the valid_inputs.
+        print "stupiiiiiid code"
         predictions_valid = logistic_predict(weights, valid_inputs)
 
         # Evaluate the prediction.
@@ -47,6 +55,10 @@ def run_logistic_regression(hyperparameters):
                "TRAIN FRAC:{:2.2f}  VALID CE:{:.6f}  VALID FRAC:{:2.2f}").format(
                    t+1, f / N, cross_entropy_train, frac_correct_train*100,
                    cross_entropy_valid, frac_correct_valid*100)
+        #print ("ITERATION:{:4d}  TRAIN NLOGL:{:4.2f}").format(t+1, f / N)
+        #print "entropy: ", cross_entropy_valid
+        #print "frac: ", frac_correct_valid
+        
         logging[t] = [f / N, cross_entropy_train, frac_correct_train*100, cross_entropy_valid, frac_correct_valid*100]
     return logging
 
@@ -76,9 +88,9 @@ def run_check_grad(hyperparameters):
 if __name__ == '__main__':
     # TODO: Set hyperparameters
     hyperparameters = {
-                    'learning_rate': -2.,
+                    'learning_rate': 0.5,
                     'weight_regularization': False, # boolean, True for using Gaussian prior on weights
-                    'num_iterations': 500,
+                    'num_iterations': 700,
                     'weight_decay': 1. # related to standard deviation of weight prior 
                     }
 
@@ -89,5 +101,5 @@ if __name__ == '__main__':
         logging += run_logistic_regression(hyperparameters)
     logging /= num_runs
 
-    # TODO generate
+    # TODO generate plots
     #[...]

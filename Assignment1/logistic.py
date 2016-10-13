@@ -30,8 +30,15 @@ def logistic_predict(weights, data):
 
     return yarray
     '''
-    dot_vals = map(lambda x: np.dot(weights[:-1].T, x) + weights[-1], data)
-    y        = map(lambda x: np.exp(-x)/(1+np.exp(-x)), dot_vals)
+    #dot_vals = map(lambda x: np.dot(weights[:-1].T, x) + weights[-1], data)
+    #y        = map(lambda x: np.exp(-x)/(1+np.exp(-x)), dot_vals)
+
+    data = np.insert(data, np.shape(data)[1], 1, axis=1)
+    z    = np.dot(weights.T, data.T)
+
+    y    = np.exp(-z)/(1+np.exp(-z))
+    y    = y.T
+    print "y is", np.shape(y)
     return y 
 
 def evaluate(targets, y):
@@ -46,10 +53,11 @@ def evaluate(targets, y):
     """
     
     ce = 0
+
     for i in range(len(targets)):
-        #ce += -np.log(targets[i] * y[i]) - np.log((1-targets[i])*(1-y[i])) # f values 
-        ce += -targets[i] * np.log(y[i]) - (1-targets[i]) * np.log(1-y[i])
-        
+        ce += -(targets[i] * np.log(y[i])) - ((1-targets[i]) * np.log(1-y[i]))
+
+    
     # makign predictions smaller than 0.5 to be 0
     # and predictions larger than 0.5 to be 1
     boundary = 0.5
@@ -62,16 +70,15 @@ def evaluate(targets, y):
     # checking similarities between prediction and target
     num_correct = 0
 
-    '''
+
     for i in range(len(y)):
         if (targets[i][0] == y[i]):
-            print "i inside = ", i
+            #print "i inside = ", i
             num_correct += 1
-    '''
-    num_correct = np.sum(targets == y)
-    
+    #num_correct = np.sum(targets == y)
+
     frac_correct = float(num_correct)/len(y) 
-    return ce, frac_correct
+    return ce[0], frac_correct
 
 
 def logistic(weights, data, targets, hyperparameters):
@@ -97,7 +104,9 @@ def logistic(weights, data, targets, hyperparameters):
     """
 
     y = logistic_predict(weights, data)
-
+    print np.shape(y), len(y)
+    
+    
     if hyperparameters['weight_regularization'] is True:
         f, df = logistic_pen(weights, data, targets, hyperparameters)
         
@@ -123,9 +132,11 @@ def logistic(weights, data, targets, hyperparameters):
             bias_val    += targets[i] - y[i]
         df[len(weights)-1] = bias_val
 
-
+        
     df = np.array([df]).T
-    return f, df, y
+    #print "f", f[0]
+    #print type(f)
+    return f[0], df, y
 
 
 def logistic_pen(weights, data, targets, hyperparameters):
