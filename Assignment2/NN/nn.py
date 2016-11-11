@@ -41,13 +41,29 @@ def InitNN(num_inputs, num_hiddens, num_outputs):
     b1 = np.zeros((num_hiddens[0]))
     b2 = np.zeros((num_hiddens[1]))
     b3 = np.zeros((num_outputs))
+    
+    dW1 = W1 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W1))
+    dW2 = W2 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W2))
+    dW3 = W3 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W3))
+    
+    db1 = 0. # np.zeros(np.shape(b1)) # 0 scalar
+    db2 = 0. # np.zeros(np.shape(b2))
+    db3 = 0. # np.zeros(np.shape(b3))
+    
+    
     model = {
         'W1': W1,
         'W2': W2,
         'W3': W3,
         'b1': b1,
         'b2': b2,
-        'b3': b3
+        'b3': b3,
+        'dW1': dW1,
+        'dW2': dW2,
+        'dW3': dW3,
+        'db1': db1,
+        'db2': db2,
+        'db3': db3
     }
     return model
 
@@ -83,12 +99,16 @@ def AffineBackward(grad_y, x, w):
     """
     ###########################
     # Insert your code here.
-    # grad_x = ...
-    # grad_w = ...
-    # grad_b = ...
-    # return grad_x, grad_w, grad_b
+    #print "shape of grad_x:", np.shape(grad_x)
+    #print "shape of grad_w:", np.shape(grad_w)
+    #print "shape of grad_b:", np.shape(grad_b)
+    
+    grad_x = np.dot(grad_y, w.T)
+    grad_w = np.dot(x.T, grad_y)
+    grad_b = np.sum(grad_y, axis=0) #np.sum(grad_y, axis=1).reshape(-1,1)
+    return grad_x, grad_w, grad_b
     ###########################
-    raise Exception('Not implemented')
+    #raise Exception('Not implemented')
 
 
 def ReLU(x):
@@ -111,10 +131,13 @@ def ReLUBackward(grad_y, x, y):
     """
     ###########################
     # Insert your code here.
-    # grad_x = ...
-    # return grad_x
+    #if x > 0:
+    #    grad_x = grad_y
+    #else:
+    #    grad_x = 0
+    return grad_y*(x>0)#grad_x
     ###########################
-    raise Exception('Not implemented')
+    #raise Exception('Not implemented')
 
 
 def Softmax(x):
@@ -139,11 +162,11 @@ def NNForward(model, x):
     Returns:
         var:   Dictionary of all intermediate variables.
     """
-    h1 = Affine(x, model['W1'], model['b1'])
+    h1  = Affine(x, model['W1'], model['b1'])
     h1r = ReLU(h1)
-    h2 = Affine(h1r, model['W2'], model['b2'])
+    h2  = Affine(h1r, model['W2'], model['b2'])
     h2r = ReLU(h2)
-    y = Affine(h2r, model['W3'], model['b3'])
+    y   = Affine(h2r, model['W3'], model['b3'])
     var = {
         'x': x,
         'h1': h1,
@@ -163,11 +186,24 @@ def NNBackward(model, err, var):
         err:      Gradients to the output of the network.
         var:      Intermediate variables from the forward pass.
     """
+    
+    # making the function vectorized to avoid for loops
+    ReLUBackward_vect = np.vectorize(ReLUBackward)
+    
+    
+    # var['h2r'] = h[i-1] in matlab example code, err = dh[i] = grad_y
     dE_dh2r, dE_dW3, dE_db3 = AffineBackward(err, var['h2r'], model['W3'])
-    dE_dh2 = ReLUBackward(dE_dh2r, var['h2'], var['h2r'])
+    
+    #print (np.shape(dE_dh2r))
+    #print (np.shape(var['h2']))
+    #print (np.shape(var['h2r']))
+    
+    dE_dh2 = ReLUBackward_vect(dE_dh2r, var['h2'], var['h2r'])
+    
     dE_dh1r, dE_dW2, dE_db2 = AffineBackward(dE_dh2, var['h1r'], model['W2'])
-    dE_dh1 = ReLUBackward(dE_dh1r, var['h1'], var['h1r'])
+    dE_dh1 = ReLUBackward_vect(dE_dh1r, var['h1'], var['h1r'])
     _, dE_dW1, dE_db1 = AffineBackward(dE_dh1, var['x'], model['W1'])
+    
     model['dE_dW1'] = dE_dW1
     model['dE_dW2'] = dE_dW2
     model['dE_dW3'] = dE_dW3
@@ -184,18 +220,32 @@ def NNUpdate(model, eps, momentum):
         model:    Dictionary of all the weights.
         eps:      Learning rate.
         momentum: Momentum.
+        
     """
+    
+    batch_size = np.shape(model['W1'])[0]
+    
+    model['dW1'] = (momentum * model['dW1']) - ((eps) * model['dE_dW1'])
+    model['dW2'] = (momentum * model['dW2']) - ((eps) * model['dE_dW2'])
+    model['dW3'] = (momentum * model['dW3']) - ((eps) * model['dE_dW3'])
+    
+    model['db1'] = (momentum * model['db1']) - ((eps) * model['dE_db1'])
+    model['db2'] = (momentum * model['db2']) - ((eps) * model['dE_db2'])
+    model['db3'] = (momentum * model['db3']) - ((eps) * model['dE_db3'])
+    
+    
     ###########################
     # Insert your code here.
     # Update the weights.
-    # model['W1'] = ...
-    # model['W2'] = ...
-    # model['W3'] = ...
-    # model['b1'] = ...
-    # model['b2'] = ...
-    # model['b3'] = ...
+    model['W1'] = model['W1'] + model['dW1']
+    model['W2'] = model['W2'] + model['dW2']
+    model['W3'] = model['W3'] + model['dW3']
+    
+    model['b1'] = model['b1'] + model['db1']
+    model['b2'] = model['b2'] + model['db2']
+    model['b3'] = model['b3'] + model['db3']
     ###########################
-    raise Exception('Not implemented')
+    #raise Exception('Not implemented')
 
 
 def Train(model, forward, backward, update, eps, momentum, num_epochs,
@@ -362,13 +412,13 @@ def main():
 
     # Hyper-parameters. Modify them if needed.
     num_hiddens = [16, 32]
-    eps = 0.01
-    momentum = 0.0
-    num_epochs = 1000
-    batch_size = 100
+    eps         = 0.001 # 0.01 # default
+    momentum    = 0.0
+    num_epochs  = 1000
+    batch_size  = 100
 
     # Input-output dimensions.
-    num_inputs = 2304
+    num_inputs  = 2304
     num_outputs = 7
 
     # Initialize model.

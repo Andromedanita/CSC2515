@@ -153,11 +153,33 @@ def Conv2DBackward(grad_y, x, y, w):
     """
     ###########################
     # Insert your code here.
-    # grad_x = ...
-    # grad_w = ...
-    # return grad_x, grad_w
+    #print ("shape of w = :" , w.shape)
+    I, J, c, k = w.shape
+    print (I, J, c, k)
+    
+    f_transpose = np.transpose(w)
+    f_transpose = np.reshape(f_transpose, (5,5,16,8))
+    
+    print ("shape y=", y.shape)
+    print ("shape f transpose=", f_transpose.shape)
+    print ("shape f=", w.shape)
+    print ("shape x=", x.shape)
+    print ("shape grad_y=", grad_y.shape)
+    
+    grad_x = Conv2D(grad_y, f_transpose, pad=(I-1, J-1))
+    
+    x_new = np.reshape(x, (8,16,16,10))
+    grad_y_new = np.reshape(grad_y,(16,16,10,16))
+    conv_output = Conv2D(x_new, grad_y_new, pad=(4, 4))
+    
+    print ("conv shape=", conv_output.shape)
+    
+    grad_w = np.reshape(Conv2D(x_new, grad_y_new, pad=(4, 4)), (5,5,8,16))
+    print ("shape grad w=", grad_w.shape)
+    
+    return grad_x, grad_w
     ###########################
-    raise Exception('Not implemented')
+    #raise Exception('Not implemented')
 
 
 def CNNForward(model, x):
@@ -232,12 +254,12 @@ def CNNUpdate(model, eps, momentum):
     ###########################
     # Insert your code here.
     # Update the weights.
-    # model['W1'] = ...
-    # model['W2'] = ...
-    # model['W3'] = ...
-    # model['b1'] = ...
-    # model['b2'] = ...
-    # model['b3'] = ...
+    # model['W1'] = model['W1'] +
+    # model['W2'] = model['W2'] +
+    # model['W3'] = model['W3'] +
+    # model['b1'] = model['b1'] +
+    # model['b2'] = model['b2'] +
+    # model['b3'] = model['b3'] +
     ###########################
     raise Exception('Not implemented')
 
