@@ -87,13 +87,28 @@ def InitCNN(num_channels, filter_size, num_filters_1, num_filters_2,
     b1 = np.zeros((num_filters_1))
     b2 = np.zeros((num_filters_2))
     b3 = np.zeros((num_outputs))
+    
+    dW1 = W1 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W1))
+    dW2 = W2 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W2))
+    dW3 = W3 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W3))
+    
+    db1 = 0. # np.zeros(np.shape(b1)) # 0 scalar
+    db2 = 0. # np.zeros(np.shape(b2))
+    db3 = 0. # np.zeros(np.shape(b3))
+    
     model = {
         'W1': W1,
         'W2': W2,
         'W3': W3,
         'b1': b1,
         'b2': b2,
-        'b3': b3
+        'b3': b3,
+        'dW1': dW1,
+        'dW2': dW2,
+        'dW3': dW3,
+        'db1': db1,
+        'db2': db2,
+        'db3': db3
     }
     return model
 
@@ -153,33 +168,19 @@ def Conv2DBackward(grad_y, x, y, w):
     """
     ###########################
     # Insert your code here.
-    #print ("shape of w = :" , w.shape)
-    I, J, c, k = w.shape
-    print (I, J, c, k)
+    I, J, c, k  = w.shape
+    f_transpose = w.transpose(0,1,3,2)
+    f_transpose_final = f_transpose[::-1,::-1,:,:]
     
-    f_transpose = np.transpose(w)
-    f_transpose = np.reshape(f_transpose, (5,5,16,8))
+    grad_x = Conv2D(grad_y, f_transpose_final, ((I-1), (J-1)))
     
-    print ("shape y=", y.shape)
-    print ("shape f transpose=", f_transpose.shape)
-    print ("shape f=", w.shape)
-    print ("shape x=", x.shape)
-    print ("shape grad_y=", grad_y.shape)
+    x_temp       = x.transpose(3,1,2,0)
+    grad_y_final = grad_y.transpose(1,2,0,3)
     
-    grad_x = Conv2D(grad_y, f_transpose, pad=(I-1, J-1))
-    
-    x_new = np.reshape(x, (8,16,16,10))
-    grad_y_new = np.reshape(grad_y,(16,16,10,16))
-    conv_output = Conv2D(x_new, grad_y_new, pad=(4, 4))
-    
-    print ("conv shape=", conv_output.shape)
-    
-    grad_w = np.reshape(Conv2D(x_new, grad_y_new, pad=(4, 4)), (5,5,8,16))
-    print ("shape grad w=", grad_w.shape)
+    grad_w_temp = Conv2D(x_temp, grad_y_final, ((I-1), (J-1)))
+    grad_w = grad_w_temp.transpose(1,2,0,3)
     
     return grad_x, grad_w
-    ###########################
-    #raise Exception('Not implemented')
 
 
 def CNNForward(model, x):
@@ -254,14 +255,22 @@ def CNNUpdate(model, eps, momentum):
     ###########################
     # Insert your code here.
     # Update the weights.
-    # model['W1'] = model['W1'] +
-    # model['W2'] = model['W2'] +
-    # model['W3'] = model['W3'] +
-    # model['b1'] = model['b1'] +
-    # model['b2'] = model['b2'] +
-    # model['b3'] = model['b3'] +
-    ###########################
-    raise Exception('Not implemented')
+    
+    model['dW1'] = (momentum * model['dW1']) + ((eps) * model['dE_dW1'])
+    model['dW2'] = (momentum * model['dW2']) + ((eps) * model['dE_dW2'])
+    model['dW3'] = (momentum * model['dW3']) + ((eps) * model['dE_dW3'])
+    
+    model['db1'] = (momentum * model['db1']) + ((eps) * model['dE_db1'])
+    model['db2'] = (momentum * model['db2']) + ((eps) * model['dE_db2'])
+    model['db3'] = (momentum * model['db3']) + ((eps) * model['dE_db3'])
+    
+    model['W1']  = model['W1'] - model['dW1']
+    model['W2']  = model['W2'] - model['dW2']
+    model['W3']  = model['W3'] - model['dW3']
+    model['b1']  = model['b1'] - model['db1']
+    model['b2']  = model['b2'] - model['db2']
+    model['b3']  = model['b3'] - model['db3']
+
 
 
 def main():
@@ -270,17 +279,17 @@ def main():
     stats_fname = 'cnn_stats.npz'
 
     # Hyper-parameters. Modify them if needed.
-    eps = 0.1
-    momentum = 0.0
-    num_epochs = 30
-    filter_size = 5
+    eps           = 0.1
+    momentum      = 0.0
+    num_epochs    = 30
+    filter_size   = 5
     num_filters_1 = 8
     num_filters_2 = 16
-    batch_size = 100
+    batch_size    = 100
 
     # Input-output dimensions.
-    num_channels = 1
-    num_outputs = 7
+    num_channels  = 1
+    num_outputs   = 7
 
     # Initialize model.
     model = InitCNN(num_channels, filter_size, num_filters_1, num_filters_2,
