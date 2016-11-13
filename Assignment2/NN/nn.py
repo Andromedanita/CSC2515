@@ -42,15 +42,17 @@ def InitNN(num_inputs, num_hiddens, num_outputs):
     b2 = np.zeros((num_hiddens[1]))
     b3 = np.zeros((num_outputs))
     
-    dW1 = W1 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W1))
-    dW2 = W2 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W2))
-    dW3 = W3 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W3))
+    # initializing dW with the size similar to W values
+    dW1 = W1 * 0.
+    dW2 = W2 * 0.
+    dW3 = W3 * 0.
     
-    db1 = 0. # np.zeros(np.shape(b1)) # 0 scalar
-    db2 = 0. # np.zeros(np.shape(b2))
-    db3 = 0. # np.zeros(np.shape(b3))
+    # initializing db values
+    db1 = 0.
+    db2 = 0.
+    db3 = 0.
     
-    
+    # adding dW and bd to dictionary
     model = {
         'W1': W1,
         'W2': W2,
@@ -101,7 +103,6 @@ def AffineBackward(grad_y, x, w):
     """
     ###########################
     # Insert your code here.
-    
     grad_x = np.dot(grad_y, w.T)
     grad_w = np.dot(x.T, grad_y)
     grad_b = np.sum(grad_y, axis=0)
@@ -126,8 +127,7 @@ def ReLUBackward(grad_y, x, y):
     Returns:
         grad_x: Gradients wrt. the inputs.
     """
-    ###########################
- 
+    # returning grad_y value when x>0 and 0 otherwise
     return grad_y*(x>0)
 
 
@@ -211,10 +211,8 @@ def NNUpdate(model, eps, momentum):
         momentum: Momentum.
         
     """
-    
-    ###########################
     # Insert your code here.
-    
+    # computing the change in W and bias values
     model['dW1'] = (momentum * model['dW1']) + ((eps) * model['dE_dW1'])
     model['dW2'] = (momentum * model['dW2']) + ((eps) * model['dE_dW2'])
     model['dW3'] = (momentum * model['dW3']) + ((eps) * model['dE_dW3'])
@@ -232,25 +230,7 @@ def NNUpdate(model, eps, momentum):
     model['b2'] = model['b2'] - model['db2']
     model['b3'] = model['b3'] - model['db3']
     
-    '''
-    model['vw1']  = momentum * model['vw1'] + (eps * model['dE_dW1'])
-    model['vw2']  = momentum * model['vw2'] + (eps * model['dE_dW2'])
-    model['vw3']  = momentum * model['vw3'] + (eps * model['dE_dW3'])
-    
-    model['vb1']  = momentum * model['vb1'] + (eps * model['dE_db1'])
-    model['vb2']  = momentum * model['vb2'] + (eps * model['dE_db2'])
-    model['vb3']  = momentum * model['vb3'] + (eps * model['dE_db3'])
-    
-    
-    model['W1'] = model['W1'] - model['vw1']
-    model['W2'] = model['W2'] - model['vw2']
-    model['W3'] = model['W3'] - model['vw3']
 
-
-    model['b1'] = model['b1'] - model['vb1']
-    model['b2'] = model['b2'] - model['vb2']
-    model['b3'] = model['b3'] - model['vb3']
-    '''
 
 def Train(model, forward, backward, update, eps, momentum, num_epochs,
           batch_size):
@@ -326,20 +306,6 @@ def Train(model, forward, backward, update, eps, momentum, num_epochs,
         valid_ce_list.append((epoch, valid_ce))
         valid_acc_list.append((epoch, valid_acc))
 
-    '''
-    folder = "/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q3/Q3.2/"
-    DisplayPlot(train_ce_list, valid_ce_list, 'Cross Entropy', eps, momentum, num_epochs,
-            batch_size, number=0)
-
-    plt.legend(("Train","Validation"),loc='best')
-    plt.savefig(folder+"nn_CE_eps{0}_moment{1}_epoch{2}_batch{3}.png".format(eps, momentum, num_epochs,batch_size))
-
-    DisplayPlot(train_acc_list, valid_acc_list, 'Accuracy', eps, momentum, num_epochs,
-            batch_size, number=1)
-
-    plt.legend(("Train","Validation"),loc='best')
-    plt.savefig(folder+"nn_acc_eps{0}_moment{1}_epoch{2}_batch{3}.png".format(eps, momentum, num_epochs,batch_size))
-    '''
 
     plt.ion()
     folder = "/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q3/Q3.2/"
@@ -357,16 +323,15 @@ def Train(model, forward, backward, update, eps, momentum, num_epochs,
     plt.legend(("Train","Validation"),loc='best')
     plt.xlabel('Epoch')
     plt.ylabel("Cross Entropy")
-    plt.savefig(folder+"nn_CE_eps{0}_moment{1}_epoch{2}_batch{3}.png".format(eps, momentum, num_epochs,batch_size))
 
-    #plt.figure(2)
+
     plt.subplot(122)
     plt.plot(np.array(train_acc)[:, 0], np.array(train_acc)[:, 1], 'b')
     plt.plot(np.array(valid_acc)[:, 0], np.array(valid_acc)[:, 1], 'g')
     plt.legend(("Train","Validation"),loc='best')
     plt.xlabel('Epoch')
     plt.ylabel("Accuracy")
-    plt.savefig(folder+"nn_acc_eps{0}_moment{1}_epoch{2}_batch{3}.png".format(eps, momentum, num_epochs,batch_size))
+    plt.savefig(folder+"nn_Q3.2_eps{0}_moment{1}_epoch{2}_batch{3}.png".format(eps, momentum, num_epochs,batch_size))
     
 
     print()
@@ -456,7 +421,7 @@ def main():
     
     # Hyper-parameters. Modify them if needed.
     num_hiddens = [16, 32]
-    eps         = 0.01 # 0.01 # default
+    eps         = 0.01 
     momentum    = 0.0
     num_epochs  = 1000
     batch_size  = 1
