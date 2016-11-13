@@ -1,0 +1,147 @@
+\documentclass[10pt]{article} 
+
+\usepackage{rotating}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[numbers,square,sort&compress]{natbib}
+\usepackage{setspace}
+\usepackage[cdot,mediumqspace,]{SIunits}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{authblk}
+\usepackage{placeins}
+\usepackage{float}
+
+
+
+\onehalfspacing
+\title{Assignment 2}
+\author{Anita Bahmanyar}
+\date{November 14, 2016}
+
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Question 3}
+\subsection*{3.1}
+
+\subsection*{3.2}
+
+\subsection*{3.3}
+
+\section*{Question 4}
+\subsection*{4.2}
+In the code provided (mogEM.py), inside function mogEM there are a few lines that include "randConst" value.
+\begin{verbatim}
+p  = randConst + np.random.rand(K, 1)
+p  = p / np.sum(p)   # mixing coefficients
+mu = mn + np.random.randn(N, K) * (np.sqrt(vr) / randConst)
+\end{verbatim}
+The first line will shows $\pi_k$ values which are the mixing coefficients in the Gaussian mixture method. The mixing coefficients will be dominated by random values if randConst is small and it will be dominated by the value of randConst if it is large.
+In the third line, as we increase randConst, "(np.sqrt(vr) / randConst)" decreases and as we decrease the randConst value, this part of "mu" expression increases. This means that as we increase the randConst value, the "mu" values will be dominated by the mean values since the second part of "mu" expression will be very small.
+
+
+% Q4.2 log-likelihood for all randConst values
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q2_logL.png}
+	\caption{Log-likelihood as a function of number of iterations for different values of randConst parameter.}
+	\label{fig:q4_log_iter}
+\end{figure}
+As we see in Figure \ref{fig:q4_log_iter}, randConst=1.0 converges faster to the similar log-likelihood values compared to the other randConst values. So the model I choose has randConst=1.0.
+Below are variance and mean of the images shown for randConst = 1.0:
+% Q4.2 mu
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_mu_1.png}
+	\caption{Mean of the images- Is is blurry because it is average.}
+	\label{fig:q4.2_mu}
+\end{figure}
+
+% Q4.2 variance
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_vary_1.png}
+	\caption{Variance of the images-black means lower variance and white means higher variance.}
+	\label{fig:q4.2_vary}
+\end{figure}
+
+We see that most of these images look the same to us even though they are not and this is because there are small variations in the images. So variances are the most helpful ones in this case to see the variation between images.
+Also, black in the variance images mean lower variance and whiter means higher variance. Areas with lower variance are better so it is better if we see a lot of black areas in the variance images. Lower variance means better classifications so the variance images with more black area are better classifiers.
+
+Below in Figure \ref{fig:q4.2_pik}, the values of Gaussian mixture coefficients are given vs. cluster number.
+% Q4.2 mixture coefficients
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_Mixcoeffbar_1.png}
+	\caption{Value of mixture of coefficients for each cluster.}
+	\label{fig:q4.2_pik}
+\end{figure}
+
+
+\subsection*{4.3}
+Initializing the means using K-means makes the code converge much faster than just using random values for the means.
+This can be seen in Figure \ref{fig:q4.3_mu} below.
+
+% Q4.3 log-likelihood for randConst=1.0
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/kmeans_random_compare}
+	\caption{Comparison between log-likelihood using two different methods: Kmeans shown in magenta and randomized method (using randConst) shown in blue.
+	We can see that using means method the log-likelihood converges earlier to a similar value compared to the randomized method.}
+	\label{fig:q4.3_logL}
+\end{figure}
+
+
+% Q4.3 mu
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_mu_1.png}
+	\caption{}
+	\label{fig:q4.3_mu}
+\end{figure}
+
+
+% Q4.3 variance
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_vary_1.png}
+	\caption{}
+	\label{fig:q4.3_mu}
+\end{figure}
+
+% Q4.4
+\subsection*{4.4}
+In this question, we are trying to compute $p(d|x)$ value using Baye's rule. using Baye's rule we know that:
+\begin{equation}\label{eq:bayes}
+p(d|x) = \frac{p(x|d) p(d)}{p(x)},
+\end{equation}
+where $p(x|d)$, $p(d)$ is the prior and $p(x)$ is the evidence. Since $p(x)$ is constant for all the values we can ignore it here. Then, we can take log of both sides of Equation (\ref{eq:bayes}) and write it as:
+\begin{equation}
+\mathrm{log} (p(d|x)) = \mathrm{log}(p(x|d) p(d)) = \mathrm{log}(p(x|d)) + \mathrm{log}(p(d)).
+\end{equation} 
+We do have value of $p(d)$ from "log\_likelihood\_class" function in the code provided and value of $p(x|d)$ is given in the function called "mogLogLikelihood". So we can use these functions to compute \mathrm{log}$p(d|x)$.
+
+Figure \ref{fig:err_rate} shows the for all three cases of training set, validation set and test set.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4_randConst_1.png}
+	\caption{}
+	\label{fig:q4.4}
+\end{figure}
+
+Just to see the results because we have some randomness in the values we start with, I ran this part of the code again and the result is shown below for the same values as Figure \ref{fig:4.4}.
+Figure \ref{fig:err_rate} shows the for all three cases of training set, validation set and test set.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4_randConst_1_fig1.png}
+	\caption{}
+	\label{fig:q4.4}
+\end{figure}
+
+\end{document}
+
