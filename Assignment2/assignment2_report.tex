@@ -29,10 +29,100 @@
 \section*{Question 3}
 \subsection*{3.1}
 
+% Q3.2
 \subsection*{3.2}
+This part of the assignment is asking for running the neural network code with different values of hyper parameters. The first part is to fix all the hyper parameters and change epsilon values from 0.001 to 1.0 for 5 different epsilon values.
+Figure \ref{fig:Q3_valid_combined} shows the cross entropy and accuracy of validation set for all 5 different epsilon values which I chose to be 0.001, 0.01, 0.1, 0.5 and 1.0.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{Q3_report_valid.png}
+	\caption{}
+	\label{fig:Q3_valid_combined}
+\end{figure}
+What we conclude is that if epsilon is very small do instance in the case of 0.001, it takes very long for the validation to converge which means longer computation time. Also, if epsilon value is very large, for instance 0.5 and 1.0, then the accuracy curve would not be improving and it stays around 0.3 since we take large steps and we miss the global optimum value. I found that epsilon=0.01 and epsilon=0.1 have similar values and since the initialization is random, it is hard to say which is better since the accuracy of using these values are pretty similar and for each run they differ due to the randomness. The value of epsilon I choose is \textbf{epsilon=0.01} to do the other runs and I keep it 0.01 which changing other parameters.
 
+In Figures \ref{fig:refer1} and \ref{fig:refer2} I show few different plots that are for the same epsilon values but they are separate plots for each epsilon so that we can see the training curve as well.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{nn_CE_eps01.png}
+	\caption{\textbf{epsilon=0.01}, CE on the left and accuracy on the right for both validation and training sets.}
+	\label{fig:refer1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{nn_CE_eps10.png}
+	\caption{\textbf{epsilon=1.0}, CE on the left and accuracy on the right for both validation and training sets.}
+	\label{fig:refer2}
+\end{figure}
+
+We also see that the accuracy of training set is always better than validation set which makes sense since we are training the model based on the training set.
+This is also true for cross-entropy where the training set always has smaller CE compared to the validation set.
+
+
+In this part, I keep epsilon the same (0.01) and only change momentum value to be 0.0, 0.5 and 0.9. As it is shown in Figures \ref{fig} below, we see that momentum=0.9 does not return good results and we conclude it is too large. The results of momentum=0.0 and momentum=0.5 are similar except for the cross-entropy where for the case of momentum=0.5, the validation cross-entropy stars to go up at a much earlier time compared to momentum=0.0. When the validation CE starts increasing instead of decreasing that is the point where training further does not help which means it does not matter if we train more except that we spend more computational time, so the momentum value that I think is better in this case is \textbf{momentum=0.0} and I will use this value for the next part of the question.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{nn_acc_momentum_all.png}
+	\caption{\textbf{epsilon=1.0}, CE on the left and accuracy on the right for both validation and training sets for three different momentum values while keeping \textbf{epsilon=0.01}. The momentum values 	are 0.0, 0.5 and 0.9 from top to the bottom.}
+	\label{fig:refer2}
+\end{figure}
+
+Smaller batch sizes take longer to run due to having more steps to run since it is defined in the code that \begin{verbatim} num_steps = int(np.ceil(num_train_cases / batch_size)) \end{verbatim} so smaller batch size means more steps.
+
+% batch = 1
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q32_batch11.png}
+	\caption{\textbf{epsilon=0.01, momentum=0.0, batch size=1}}
+	\label{fig:Q32_batch10}
+\end{figure}
+
+% batch =10
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q32_batch10.png}
+	\caption{\textbf{epsilon=0.01, momentum=0.0, batch size=10}}
+	\label{fig:Q32_batch10}
+\end{figure}
+
+% batch = 100
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q32_batch100.png}
+	\caption{\textbf{epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:Q32_batch10}
+\end{figure}
+
+% batch = 500
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q32_batch500.png}
+	\caption{\textbf{epsilon=0.01, momentum=0.0, batch size=500}}
+	\label{fig:Q32_batch10}
+\end{figure}
+
+% batch = 1000
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q32_batch1000.png}
+	\caption{\textbf{epsilon=0.01, momentum=0.0, batch size=1000}}
+	\label{fig:Q32_batch10}
+\end{figure}
+
+
+
+% Q3.3
 \subsection*{3.3}
 
+% Q3.4
+\subsection*{3.4}
+
+% Q3.5
+\subsection*{3.5}
+
+% Q4
 \section*{Question 4}
 \subsection*{4.2}
 In the code provided (mogEM.py), inside function mogEM there are a few lines that include "randConst" value.
@@ -131,16 +221,16 @@ Figure \ref{fig:err_rate} shows the for all three cases of training set, validat
 	\centering
 	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4_randConst_1.png}
 	\caption{}
-	\label{fig:q4.4}
+	\label{fig:4.4}
 \end{figure}
 
 Just to see the results because we have some randomness in the values we start with, I ran this part of the code again and the result is shown below for the same values as Figure \ref{fig:4.4}.
-Figure \ref{fig:err_rate} shows the for all three cases of training set, validation set and test set.
+Figure \ref{fig:err_rate} shows for all three cases of training set, validation set and test set.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4_randConst_1_fig1.png}
 	\caption{}
-	\label{fig:q4.4}
+	\label{fig:err_rate}
 \end{figure}
 
 \end{document}
