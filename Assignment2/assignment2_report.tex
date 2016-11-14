@@ -299,37 +299,142 @@ As we see above, the accuracy of the validation set is more or less the same whe
 
 \subsubsection*{CNN}
 
-% [,]
+
+% [8,16]
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{.png}
-	\caption{\textbf{[,],epsilon=0.01, momentum=0.0, batch size=100}}
+	\includegraphics[scale=0.4]{cnn_8_16_bad.png}
+	\caption{\textbf{[8,16],epsilon=0.1, momentum=0.9, batch size=100}}
 	\label{fig:}
 \end{figure}
 
 
-% [,]
+% [16,16]
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{.png}
-	\caption{\textbf{[],epsilon=0.01, momentum=0.0, batch size=100}}
+	\includegraphics[scale=0.4]{cnn_16_16_bad.png}
+	\caption{\textbf{[16,16],epsilon=0.1, momentum=0.9, batch size=100}}
 	\label{fig:}
 \end{figure}
 
 
-% [,]
+% [16,8]
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{.png}
-	\caption{\textbf{[,],epsilon=0.01, momentum=0.0, batch size=100}}
+	\includegraphics[scale=0.4]{cnn_16_8_bad.png}
+	\caption{\textbf{[16,8],epsilon=0.1, momentum=0.9, batch size=100}}
 	\label{fig:}
 \end{figure}
+
+
+We see that learning rate of eps = 0.1 is too high when using momentum=0.9 in this case which caused the model to miss the optimum value and not learn and not improve.This means that we need to change eps to be smaller so I chose \textbf{eps=0.1, momentum=0.9} and then tried these filters again. The new results are shown below:
+
+% new can filter results
+
+% [8,16]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_8_16.png}
+	\caption{\textbf{[8,16],epsilon=0.01, momentum=0.9, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% [16,16]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_16_16.png}
+	\caption{\textbf{[16,16],epsilon=0.01, momentum=0.9, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% [16,8]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_16_8.png}
+	\caption{\textbf{[16,8],epsilon=0.01, momentum=0.9, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+We see that we get much better results when I adjusted the learning rate. Also, as we increase the number of hidden units, the code runs slower because it has to do more calculations. Larger number of hidden units result in better values but too large of value results in over-fitting. Too small of number of hidden units results in not capturing all of the features as well. So we need to decide on the number of hidden units such that it does not over-fit or does not miss capturing features.
 
 
 
 
 % Q3.4
 \subsection*{3.4}
+The number of parameters we need to calculate is the obtained in the following way: \\
+size(W1) + size(W2) + size(W3) + size(b1) + size(b2) + size(b3). So I printed the size of these arrays in the initialization function in both NN and CNN. \\ 
+For NN, the size of each weight and bias is as follows: \\ 
+size(W1) = $2304 \times N_1$ \\
+size(W2) = $N_1  \times N_2$ \\
+size(W3) = $N_2  \times 7$ \\
+size(b1)  = $N_1$ \\ 
+size(b2)  = $N_2$ \\ 
+size(b3)  = 7 \\
+
+For CNN case, the weights and bias sizes are given as follows: \\
+size(W1) = $5 \times 5 \times 1 \times N_1$\\
+size(W2) = $5 \times 5 \times N_1 \times N_2$ \\
+size(W3) = $64 \times N_2$ \\
+size(b1)  = $N_1$ \\ 
+size(b2)  = $N_2$ \\ 
+size(b3)  = 7 \\
+
+So I wrote a function to sum these up and then tried a few different values of $N_1$ and $N_2$ for can and then tried to get a close value for nn with trial and error. The code is shown below:
+
+\begin{verbatim}
+def func_cnn(N1, N2):
+	return 26*N1 + 449*N2 + 25*N1*N2 + 7
+	
+def func_nn(N1, N2):	
+	return 2305*N1 + 8*N2 + 7 +N1*N2
+\end{verbatim}
+
+The values I got for nn code are [$N_1,N_2$] = [7,13] which results in 16337 parameters (including bias) and for can I choose [$N_1, N2_$] = [10,23] which results in 16344 parameters (including bias). The number of parameters are very similar.
+
+The sum of all of these would be the number of parameters in each method, so we need to choose $N_1$ and $N_2$ values for each method such that both methods have similar number f parameters so that we can compare the results better.
+
+Using these values for the number of hidden values and filters, I got the results shown below:
+
+% nn, CE, acc
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Q34_nn_7_13.png}
+	\caption{Cross-entropy and accuracy using nn method using hidden layers = [7,13].}
+	\label{fig:}
+\end{figure}
+
+
+% nn, imshow
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Q34_nn_imshow_7_13.png}
+	\caption{Weights of the first layer using nn method using hidden layers = [7,13].}
+	\label{fig:}
+\end{figure}
+
+
+% cnn, CE, acc
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Q34_cnn_10_23.png}
+	\caption{Cross-entropy and accuracy using nn method using hidden layers = [10,23].}
+	\label{fig:}
+\end{figure}
+
+
+% cnn, imshow
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Q34_cnn_imshow_10_23.png}
+	\caption{Weights of the first layer using cnn method using hidden layers = [10,23].}
+	\label{fig:}
+\end{figure}
+
+The first layer we are looking at for the nn method, we can see human face fewtures in the images. We can see nose and eyes in some of them which means that in nn method it tries to find parts of the whole image in this case looks for eyes or nose. However, in cnn method,  we can see that we cannot distinguish any face features and we can only see vertical and horizontal lines which means that this layer is looking for vertical and horizontal lines only. This is the difference between the two methods.
+
 
 % Q3.5
 \subsection*{3.5}

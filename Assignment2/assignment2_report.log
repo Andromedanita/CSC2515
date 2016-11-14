@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  14 NOV 2016 01:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  14 NOV 2016 04:52
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -356,6 +356,27 @@ LaTeX Warning: Label `fig:Q32_batch10' multiply defined.
 
 
 LaTeX Warning: Label `fig:Q32_batch10' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
 
 
 LaTeX Warning: Label `fig:' multiply defined.
@@ -860,295 +881,17 @@ l.296
                                                   \fi \fi 
 l.296 
        <./Q33_hidden_16_32.png> <./Q33_hidden_32_32.png>]
+<cnn_8_16_bad.png, id=163, 1156.32pt x 586.8324pt>
+File: cnn_8_16_bad.png Graphic file (type png)
+ <use cnn_8_16_bad.png>
+Package pdftex.def Info: cnn_8_16_bad.png used on input line 306.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
 
-LaTeX Warning: File `.png' not found on input line 305.
+<cnn_16_16_bad.png, id=164, 1156.32pt x 586.8324pt>
+File: cnn_16_16_bad.png Graphic file (type png)
+ <use cnn_16_16_bad.png>
+Package pdftex.def Info: cnn_16_16_bad.png used on input line 315.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
 
-
-! Package pdftex.def Error: File `.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.305 	\includegraphics[scale=0.4]{.png}
-                                        
-? 
-
-LaTeX Warning: File `.png' not found on input line 314.
-
-
-! Package pdftex.def Error: File `.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.314 	\includegraphics[scale=0.4]{.png}
-                                        
-? 
-
-LaTeX Warning: File `.png' not found on input line 323.
-
-
-! Package pdftex.def Error: File `.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.323 	\includegraphics[scale=0.4]{.png}
-                                        
-? 
 [17pdfTeX warning (ext4): destination with the same identifier (name{figure.27}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.341 \begin{verbatim}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{figure.28}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.341 \begin{verbatim}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{figure.29}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.341 \begin{verbatim}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{figure.30}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.341 \begin{verbatim}
-                       <./Q33_hidden_32_16.png>]
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q2_logL
-.png, id=173, 578.16pt x 433.62pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q2
-_logL.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q2_
-logL.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/Q2_logL.png used on input line 353.
-(pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
-
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_mu_1
-.png, id=175, 1054.4193pt x 216.81pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2
-_mu_1.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_
-mu_1.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q2_mu_1.png used on input line 362.
-(pdftex.def)             Requested size: 527.20836pt x 108.40472pt.
-
-Overfull \hbox (57.45334pt too wide) in paragraph at lines 362--363
- [][] 
- []
-
-[18pdfTeX warning (ext4): destination with the same identifier (name{figure.31}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.366 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-Q2_logL.png>]
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_vary
-_1.png, id=189, 1045.7469pt x 216.81pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2
-_vary_1.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_
-vary_1.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q2_vary_1.png used on input line 370.
-(pdftex.def)             Requested size: 522.87218pt x 108.40472pt.
-
-Overfull \hbox (53.11716pt too wide) in paragraph at lines 370--371
- [][] 
- []
-
-
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_Mixc
-oeffbar_1.png, id=191, 578.16pt x 433.62pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2
-_Mixcoeffbar_1.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_
-Mixcoeffbar_1.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q2_Mixcoeffbar_1.png used on input line 382.
-(pdftex.def)             Requested size: 260.16959pt x 195.1272pt.
- [19pdfTeX warning (ext4): destination with the same identifier (name{figure.32
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.386 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-33}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.386 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-q2_mu_1.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Resul
-ts/Q4/q2_vary_1.png>]
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/kmeans_
-random_compare.png, id=203, 578.16pt x 433.62pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/km
-eans_random_compare.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/kme
-ans_random_compare.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/kmeans_random_compare.png used on input line 395.
-(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
-
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_mu_1
-.png, id=204, 1063.8144pt x 216.81pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3
-_mu_1.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_
-mu_1.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q3_mu_1.png used on input line 405.
-(pdftex.def)             Requested size: 531.9059pt x 108.40472pt.
-
-Overfull \hbox (62.15088pt too wide) in paragraph at lines 405--406
- [][] 
- []
-
-[20pdfTeX warning (ext4): destination with the same identifier (name{figure.34}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.409 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-35}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.409 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-q2_Mixcoeffbar_1.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignme
-nt2/Results/Q4/kmeans_random_compare.png>]
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_vary
-_1.png, id=214, 1059.4782pt x 216.81pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3
-_vary_1.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_
-vary_1.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q3_vary_1.png used on input line 414.
-(pdftex.def)             Requested size: 529.7378pt x 108.40472pt.
-
-Overfull \hbox (59.98277pt too wide) in paragraph at lines 414--415
- [][] 
- []
-
-
-! LaTeX Error: \mathrm allowed only in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.429 ...an use these functions to compute \mathrm
-                                                  {log}$p(d|x)$.
-? 
-
-LaTeX Warning: Reference `fig:err_rate' on page 21 undefined on input line 431.
-
-
-
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4
-_randConst_1.png, id=216, 578.16pt x 433.62pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4
-.4/q4_randConst_1.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.
-4/q4_randConst_1.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/Q4.4/q4_randConst_1.png used on input line 434.
-(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
- [21pdfTeX warning (ext4): destination with the same identifier (name{figure.36
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.438 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-37}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.438 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-q3_mu_1.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Resul
-ts/Q4/q3_vary_1.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 441--442
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 443--444
-
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 448.
-[22pdfTeX warning (ext4): destination with the same identifier (name{figure.38}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.448 \end{document}
-                     </Users/anita/Documents/Grad_Second_Year/CSC2515/assignmen
-t2/Results/Q4/Q4.4/q4_randConst_1.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 448.
- (./assignment2_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 448.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 448.
-Package rerunfilecheck Info: File `assignment2_report.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 448.
- ) 
-Here is how much of TeX's memory you used:
- 7940 strings out of 493117
- 118885 string characters out of 6135433
- 210956 words of memory out of 5000000
- 11206 multiletter control sequences out of 15000+600000
- 6928 words of font info for 26 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 34i,8n,28p,841b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on assignment2_report.pdf (22 pages, 7697721 bytes).
-PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 77 named destinations out of 1000 (max. 500000)
- 166 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+) 
