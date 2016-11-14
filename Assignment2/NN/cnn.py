@@ -88,14 +88,17 @@ def InitCNN(num_channels, filter_size, num_filters_1, num_filters_2,
     b2 = np.zeros((num_filters_2))
     b3 = np.zeros((num_outputs))
     
-    dW1 = W1 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W1))
-    dW2 = W2 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W2))
-    dW3 = W3 * 0. #np.zeros((num_inputs, num_hiddens[0])) #np.zeros(np.shape(W3))
+    # initializing dW values as 0s with the same shape as Ws
+    dW1 = W1 * 0.
+    dW2 = W2 * 0.
+    dW3 = W3 * 0.
     
-    db1 = 0. # np.zeros(np.shape(b1)) # 0 scalar
-    db2 = 0. # np.zeros(np.shape(b2))
-    db3 = 0. # np.zeros(np.shape(b3))
+    # initializing db values
+    db1 = 0.
+    db2 = 0.
+    db3 = 0.
     
+    # adding dW and db values to the model dictionary
     model = {
         'W1': W1,
         'W2': W2,
@@ -166,19 +169,27 @@ def Conv2DBackward(grad_y, x, y, w):
         grad_x: Gradients wrt. the inputs.
         grad_w: Gradients wrt. the weights.
     """
-    ###########################
-    # Insert your code here.
-    I, J, c, k  = w.shape
-    f_transpose = w.transpose(0,1,3,2)
+    
+    # indices to use for padding
+    I, J, c, k        = w.shape
+    
+    # first transposing elements in the last two indices (indiced 2 and 3 with one another)
+    f_transpose       = w.transpose(0,1,3,2)
+    
+    # reversing the elements in the first two indices (indices 0 and 1)
     f_transpose_final = f_transpose[::-1,::-1,:,:]
     
-    grad_x = Conv2D(grad_y, f_transpose_final, ((I-1), (J-1)))
+    # considering padding
+    grad_x       = Conv2D(grad_y, f_transpose_final, ((I-1), (J-1)))
     
+    # making the shape of x and grad_y consistent for each iteration
     x_temp       = x.transpose(3,1,2,0)
     grad_y_final = grad_y.transpose(1,2,0,3)
     
-    grad_w_temp = Conv2D(x_temp, grad_y_final, ((I-1), (J-1)))
-    grad_w = grad_w_temp.transpose(1,2,0,3)
+    grad_w_temp  = Conv2D(x_temp, grad_y_final, ((I-1), (J-1)))
+    
+    # to make sure we have the correct shape
+    grad_w       = grad_w_temp.transpose(1,2,0,3)
     
     return grad_x, grad_w
 
@@ -252,10 +263,8 @@ def CNNUpdate(model, eps, momentum):
         eps:      Learning rate.
         momentum: Momentum.
     """
-    ###########################
-    # Insert your code here.
-    # Update the weights.
     
+    # Change in weights and bias
     model['dW1'] = (momentum * model['dW1']) + ((eps) * model['dE_dW1'])
     model['dW2'] = (momentum * model['dW2']) + ((eps) * model['dE_dW2'])
     model['dW3'] = (momentum * model['dW3']) + ((eps) * model['dE_dW3'])
@@ -264,6 +273,7 @@ def CNNUpdate(model, eps, momentum):
     model['db2'] = (momentum * model['db2']) + ((eps) * model['dE_db2'])
     model['db3'] = (momentum * model['db3']) + ((eps) * model['dE_db3'])
     
+    # updating the weights and bias
     model['W1']  = model['W1'] - model['dW1']
     model['W2']  = model['W2'] - model['dW2']
     model['W3']  = model['W3'] - model['dW3']
@@ -280,12 +290,12 @@ def main():
 
     # Hyper-parameters. Modify them if needed.
     eps           = 0.1
-    momentum      = 0.0
+    momentum      = 0.9
     num_epochs    = 30
     filter_size   = 5
     num_filters_1 = 8
     num_filters_2 = 16
-    batch_size    = 100
+    batch_size    = 1000
 
     # Input-output dimensions.
     num_channels  = 1
@@ -309,14 +319,14 @@ def main():
     CheckGrad(model, CNNForward, CNNBackward, 'b1', x)
 
     # Train model.
-    stats = Train(model, CNNForward, CNNBackward, CNNUpdate, eps,
+    model, stats = Train(model, CNNForward, CNNBackward, CNNUpdate, eps,
                   momentum, num_epochs, batch_size)
 
     # Uncomment if you wish to save the model.
-    # Save(model_fname, model)
+    Save(model_fname, model)
 
     # Uncomment if you wish to save the training statistics.
-    # Save(stats_fname, stats)
+    Save(stats_fname, stats)
 
 if __name__ == '__main__':
     main()
