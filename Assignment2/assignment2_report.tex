@@ -27,10 +27,10 @@
 
 
 \section*{Question 3}
-\subsection*{3.1}
 
 % Q3.2
 \subsection*{3.2}
+\subsubsection*{NN}
 This part of the assignment is asking for running the neural network code with different values of hyper parameters. The first part is to fix all the hyper parameters and change epsilon values from 0.001 to 1.0 for 5 different epsilon values.
 Figure \ref{fig:Q3_valid_combined} shows the cross entropy and accuracy of validation set for all 5 different epsilon values which I chose to be 0.001, 0.01, 0.1, 0.5 and 1.0.
 \begin{figure}[H]
@@ -74,7 +74,7 @@ Smaller batch sizes take longer to run due to having more steps to run since it 
 % batch = 1
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{Q32_batch11.png}
+	\includegraphics[scale=0.4]{Q32_batch1.png}
 	\caption{\textbf{epsilon=0.01, momentum=0.0, batch size=1}}
 	\label{fig:Q32_batch10}
 \end{figure}
@@ -111,10 +111,141 @@ Smaller batch sizes take longer to run due to having more steps to run since it 
 	\label{fig:Q32_batch10}
 \end{figure}
 
+What I conclude is that the smaller batch size results in worse accuracy and bad cross-entropies. The higher batch size values result in higher accuracies and lower cross-entropies up to batch size=100. Also, for the case of batch size=1000, accuracy of validation set is very close to that of training set as well their cross entropies. This is because the training accuracies become lower. Also, for batch size values higher than 100, the accuracies converge slower. So the best value for \textbf{batch size=100}.
+
+%%%% CNN %%%%%
+\subsubsection*{CNN}
+I ran CNN code for five different epsilon values and then compared their accuracies and their cross-entropies. Below are the results for each run.
+% eps = 0.001
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_eps0001.png}
+	\caption{\textbf{epsilon=0.001, momentum=0.0, batch size=100}}
+	\label{fig:Q32_batch10}
+\end{figure}
 
 
-% Q3.3
+% eps = 0.01
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_eps001.png}
+	\caption{\textbf{epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% eps = 0.1
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_eps01.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% eps = 0.5
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_eps05.png}
+	\caption{\textbf{epsilon=0.5, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% eps = 1.0
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_eps1.png}
+	\caption{\textbf{epsilon=1.0, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+Based on the figures above, \textbf{eps = 0.1} returns the best results using CNN method.
+
+% changing momentum for CNN
+Fixing \textbf{eps = 0.1}, I ran CNN code using three different momentum values and the results are shown in figures below:
+
+% momentum = 0.0
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_eps01.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% momentum = 0.5
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_mom05.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.5, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% momentum = 0.9
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_mom09.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.9, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+As we see from the figures above, the best model is a result of using \textbf{momentum=0.0}. Using momentum=0.9 results in very bad accuracy and cross-entropy and using momentum=0.5 has lower accuracy and higher CE than when the momentum is 0.
+
+% batch = 1
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_batch1.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.0, batch size=1}}
+	\label{fig:}
+\end{figure}
+
+
+% batch = 10
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_batch10.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.0, batch size=10}}
+	\label{fig:}
+\end{figure}
+
+% batch = 100
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_batch100.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% batch = 500
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_batch500.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.0, batch size=500}}
+	\label{fig:}
+\end{figure}
+
+
+% batch = 1000
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{cnn_acc_batch1000.png}
+	\caption{\textbf{epsilon=0.1, momentum=0.0, batch size=1000}}
+	\label{fig:}
+\end{figure}
+
+Looking at the figures above, we see that batch size=100 has the best results since the accuracy of the validation set is higher and it has lower cross entropy. Batch size=500 and batch size=1000 have lower accuracies around 0.45 -0.6 which is lower than 0.8 for the 100 batch size. Accuracy for batch size = 10 is about 0.6 and stays the same the whole time with no improvement and batch size=1 generates accuracy of as most 0.3 and does not improve either and has high cross-entropy above 1.5.
+
+
+
+
+%%%%  Q3.3 %%%%
 \subsection*{3.3}
+Keeping the momentum fixed and equal to 0.9,
+
+
 
 % Q3.4
 \subsection*{3.4}
@@ -224,14 +355,14 @@ Figure \ref{fig:err_rate} shows the for all three cases of training set, validat
 	\label{fig:4.4}
 \end{figure}
 
-Just to see the results because we have some randomness in the values we start with, I ran this part of the code again and the result is shown below for the same values as Figure \ref{fig:4.4}.
-Figure \ref{fig:err_rate} shows for all three cases of training set, validation set and test set.
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4_randConst_1_fig1.png}
-	\caption{}
-	\label{fig:err_rate}
-\end{figure}
+
+
+Answers to the questions: \\
+
+(b) We find that the error rates on the training set generally decreases as the number of clusters increases. This is because it is easier to fit to larger number of Gaussians. It obviously over-fits the training data if the number of cluster is very large but it still fits the training set well so the error rate decreases. \\
+
+(c) The error rate for test set decreases as we increase the number of clusters. This is not the case for validation set as we see (the error rate increases for higher cluster numbers). This is because we are over-fitting the training set by having larger number of clusters and therefore the model does not work well on the validation set for larger number of clusters and the reason it works for the test set is because of the input we have for test set. I think we are just lucky that it works well on the test set and usually this is not the case.
+
 
 \end{document}
 

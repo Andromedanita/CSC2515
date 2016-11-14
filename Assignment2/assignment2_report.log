@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  13 NOV 2016 17:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  13 NOV 2016 22:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -340,6 +340,54 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 LaTeX Warning: Label `fig:refer2' multiply defined.
 
 
+LaTeX Warning: Label `fig:Q32_batch10' multiply defined.
+
+
+LaTeX Warning: Label `fig:Q32_batch10' multiply defined.
+
+
+LaTeX Warning: Label `fig:Q32_batch10' multiply defined.
+
+
+LaTeX Warning: Label `fig:Q32_batch10' multiply defined.
+
+
+LaTeX Warning: Label `fig:Q32_batch10' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
 LaTeX Warning: Label `fig:q4.3_mu' multiply defined.
 
 )
@@ -451,18 +499,12 @@ LaTeX Info: Redefining \nameref on input line 24.
 File: Q3_report_valid.png Graphic file (type png)
 
 <use Q3_report_valid.png>
-Package pdftex.def Info: Q3_report_valid.png used on input line 38.
+Package pdftex.def Info: Q3_report_valid.png used on input line 39.
 (pdftex.def)             Requested size: 475.0042pt x 194.66891pt.
 
-Overfull \hbox (5.24918pt too wide) in paragraph at lines 38--39
+Overfull \hbox (5.24918pt too wide) in paragraph at lines 39--40
  [][] 
  []
-
-<nn_CE_eps01.png, id=9, 2701.09125pt x 1084.05pt>
-File: nn_CE_eps01.png Graphic file (type png)
- <use nn_CE_eps01.png>
-Package pdftex.def Info: nn_CE_eps01.png used on input line 47.
-(pdftex.def)             Requested size: 405.14621pt x 162.60048pt.
 
 [1
 
@@ -472,262 +514,418 @@ ready used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.50 \end{figure}
-                  <./Q3_report_valid.png>]
-<nn_CE_eps10.png, id=25, 2736.2225pt x 1055.945pt>
+l.44 
+      <./Q3_report_valid.png>]
+<nn_CE_eps01.png, id=25, 2701.09125pt x 1084.05pt>
+File: nn_CE_eps01.png Graphic file (type png)
+ <use nn_CE_eps01.png>
+Package pdftex.def Info: nn_CE_eps01.png used on input line 48.
+(pdftex.def)             Requested size: 405.14621pt x 162.60048pt.
+
+<nn_CE_eps10.png, id=26, 2736.2225pt x 1055.945pt>
 File: nn_CE_eps10.png Graphic file (type png)
  <use nn_CE_eps10.png>
-Package pdftex.def Info: nn_CE_eps10.png used on input line 54.
+Package pdftex.def Info: nn_CE_eps10.png used on input line 55.
 (pdftex.def)             Requested size: 410.41566pt x 158.38492pt.
 
 
-LaTeX Warning: Reference `fig' on page 2 undefined on input line 63.
+LaTeX Warning: Reference `fig' on page 2 undefined on input line 64.
 
-<nn_acc_momentum_all.png, id=26, 2395.95125pt x 2657.93pt>
+<nn_acc_momentum_all.png, id=27, 2395.95125pt x 2657.93pt>
 File: nn_acc_momentum_all.png Graphic file (type png)
 
 <use nn_acc_momentum_all.png>
-Package pdftex.def Info: nn_acc_momentum_all.png used on input line 67.
+Package pdftex.def Info: nn_acc_momentum_all.png used on input line 68.
 (pdftex.def)             Requested size: 359.37718pt x 398.6723pt.
  [2pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.71 
+l.72 
      pdfTeX warning (ext4): destination with the same identifier (name{figure.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.71 
+l.72 
       <./nn_CE_eps01.png> <./nn_CE_eps10.png>]
-
-LaTeX Warning: File `Q32_batch11.png' not found on input line 77.
-
-
-! Package pdftex.def Error: File `Q32_batch11.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 	\includegraphics[scale=0.4]{Q32_batch11.png}
-                                                  
-? 
-<Q32_batch10.png, id=36, 1156.32pt x 586.8324pt>
-File: Q32_batch10.png Graphic file (type png)
- <use Q32_batch10.png>
-Package pdftex.def Info: Q32_batch10.png used on input line 85.
-(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+<Q32_batch1.png, id=37, 1156.32pt x 578.16pt>
+File: Q32_batch1.png Graphic file (type png)
+ <use Q32_batch1.png>
+Package pdftex.def Info: Q32_batch1.png used on input line 78.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
  [3pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.89 
-     pdfTeX warning (ext4): destination with the same identifier (name{figure.5
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.89 
+l.82 
       <./nn_acc_momentum_all.png>]
+<Q32_batch10.png, id=44, 1156.32pt x 586.8324pt>
+File: Q32_batch10.png Graphic file (type png)
+ <use Q32_batch10.png>
+Package pdftex.def Info: Q32_batch10.png used on input line 86.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
 
-LaTeX Warning: File `Q32_batch100.png' not found on input line 93.
+<Q32_batch100.png, id=45, 1156.32pt x 586.8324pt>
+File: Q32_batch100.png Graphic file (type png)
+ <use Q32_batch100.png>
+Package pdftex.def Info: Q32_batch100.png used on input line 94.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
 
-
-! Package pdftex.def Error: File `Q32_batch100.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.93 ...cludegraphics[scale=0.4]{Q32_batch100.png}
-                                                  
-? 
-
-LaTeX Warning: File `Q32_batch500.png' not found on input line 101.
-
-
-! Package pdftex.def Error: File `Q32_batch500.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.101 ...ludegraphics[scale=0.4]{Q32_batch500.png}
-                                                  
-? 
-
-LaTeX Warning: File `Q32_batch1000.png' not found on input line 109.
-
-
-! Package pdftex.def Error: File `Q32_batch1000.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.109 ...udegraphics[scale=0.4]{Q32_batch1000.png}
-                                                  
-? 
-[4pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) 
+[4pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.129 \begin{verbatim}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{figure.7}) has been already used, duplicate ignored
+l.98 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.129 \begin{verbatim}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{figure.8}) has been already used, duplicate ignored
+l.98 
+      <./Q32_batch1.png> <./Q32_batch10.png>]
+<Q32_batch500.png, id=54, 1156.32pt x 586.8324pt>
+File: Q32_batch500.png Graphic file (type png)
+ <use Q32_batch500.png>
+Package pdftex.def Info: Q32_batch500.png used on input line 102.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+<Q32_batch1000.png, id=55, 1156.32pt x 586.8324pt>
+File: Q32_batch1000.png Graphic file (type png)
+ <use Q32_batch1000.png>
+Package pdftex.def Info: Q32_batch1000.png used on input line 110.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.129 \begin{verbatim}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{figure.9}) has been already used, duplicate ignored
+l.114 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.129 \begin{verbatim}
-                       <./Q32_batch10.png>]
+l.114 
+       <./Q32_batch100.png> <./Q32_batch500.png>]
+<cnn_eps0001.png, id=64, 1156.32pt x 578.16pt>
+File: cnn_eps0001.png Graphic file (type png)
+ <use cnn_eps0001.png>
+Package pdftex.def Info: cnn_eps0001.png used on input line 123.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.127 
+       <./Q32_batch1000.png>] <cnn_eps001.png, id=72, 1156.32pt x 578.16pt>
+File: cnn_eps001.png Graphic file (type png)
+
+<use cnn_eps001.png>
+Package pdftex.def Info: cnn_eps001.png used on input line 132.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
+ <cnn_eps01.png, id=73, 1156.32pt x 586.8324pt>
+File: cnn_eps01.png Graphic file (type png)
+
+<use cnn_eps01.png>
+Package pdftex.def Info: cnn_eps01.png used on input line 141.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+ [7pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.145 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+11}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.145 
+       <./cnn_eps0001.png> <./cnn_eps001.png>]
+<cnn_eps05.png, id=83, 1156.32pt x 578.16pt>
+File: cnn_eps05.png Graphic file (type png)
+ <use cnn_eps05.png>
+Package pdftex.def Info: cnn_eps05.png used on input line 150.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
+
+<cnn_acc_eps1.png, id=84, 1156.32pt x 586.8324pt>
+File: cnn_acc_eps1.png Graphic file (type png)
+ <use cnn_acc_eps1.png>
+Package pdftex.def Info: cnn_acc_eps1.png used on input line 159.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+[8pdfTeX warning (ext4): destination with the same identifier (name{figure.12})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.163 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+13}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.163 
+       <./cnn_eps01.png> <./cnn_eps05.png>]
+File: cnn_eps01.png Graphic file (type png)
+ <use cnn_eps01.png>
+Package pdftex.def Info: cnn_eps01.png used on input line 172.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+<cnn_acc_mom05.png, id=93, 1156.32pt x 578.16pt>
+File: cnn_acc_mom05.png Graphic file (type png)
+ <use cnn_acc_mom05.png>
+Package pdftex.def Info: cnn_acc_mom05.png used on input line 181.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
+
+[9pdfTeX warning (ext4): destination with the same identifier (name{figure.14})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.185 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.185 
+       <./cnn_acc_eps1.png>]
+<cnn_acc_mom09.png, id=101, 1156.32pt x 586.8324pt>
+File: cnn_acc_mom09.png Graphic file (type png)
+ <use cnn_acc_mom09.png>
+Package pdftex.def Info: cnn_acc_mom09.png used on input line 190.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+<cnn_acc_batch1.png, id=102, 1156.32pt x 586.8324pt>
+File: cnn_acc_batch1.png Graphic file (type png)
+ <use cnn_acc_batch1.png>
+Package pdftex.def Info: cnn_acc_batch1.png used on input line 200.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.16}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.204 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+17}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.204 
+       <./cnn_acc_mom05.png> <./cnn_acc_mom09.png>]
+<cnn_acc_batch10.png, id=111, 1156.32pt x 586.8324pt>
+File: cnn_acc_batch10.png Graphic file (type png)
+
+<use cnn_acc_batch10.png>
+Package pdftex.def Info: cnn_acc_batch10.png used on input line 209.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+<cnn_acc_batch100.png, id=112, 1156.32pt x 586.8324pt>
+File: cnn_acc_batch100.png Graphic file (type png)
+
+<use cnn_acc_batch100.png>
+Package pdftex.def Info: cnn_acc_batch100.png used on input line 217.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+ [11pdfTeX warning (ext4): destination with the same identifier (name{figure.18
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.221 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+19}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.221 
+       <./cnn_acc_batch1.png> <./cnn_acc_batch10.png>]
+<cnn_acc_batch500.png, id=121, 1156.32pt x 586.8324pt>
+File: cnn_acc_batch500.png Graphic file (type png)
+
+<use cnn_acc_batch500.png>
+Package pdftex.def Info: cnn_acc_batch500.png used on input line 226.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+
+<cnn_acc_batch1000.png, id=122, 1156.32pt x 586.8324pt>
+File: cnn_acc_batch1000.png Graphic file (type png)
+
+<use cnn_acc_batch1000.png>
+Package pdftex.def Info: cnn_acc_batch1000.png used on input line 235.
+(pdftex.def)             Requested size: 462.5198pt x 234.72879pt.
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.20
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.239 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+21}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.239 
+       <./cnn_acc_batch100.png> <./cnn_acc_batch500.png>]
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q2_logL
-.png, id=53, 578.16pt x 433.62pt>
+.png, id=131, 578.16pt x 433.62pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q2
 _logL.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q2_
 logL.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/Q2_logL.png used on input line 141.
+ment2/Results/Q4/Q2_logL.png used on input line 270.
 (pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.22
+}) has been already used, duplicate ignored
 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.273 \end{figure}
+                   <./cnn_acc_batch1000.png>]
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_mu_1
-.png, id=55, 1054.4193pt x 216.81pt>
+.png, id=147, 1054.4193pt x 216.81pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2
 _mu_1.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_
 mu_1.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q2_mu_1.png used on input line 150.
+ment2/Results/Q4/q2_mu_1.png used on input line 279.
 (pdftex.def)             Requested size: 527.20836pt x 108.40472pt.
 
-Overfull \hbox (57.45334pt too wide) in paragraph at lines 150--151
+Overfull \hbox (57.45334pt too wide) in paragraph at lines 279--280
  [][] 
  []
 
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.10})
- has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.154 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-Q2_logL.png>]
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_vary
-_1.png, id=69, 1045.7469pt x 216.81pt>
+_1.png, id=148, 1045.7469pt x 216.81pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2
 _vary_1.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_
 vary_1.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q2_vary_1.png used on input line 158.
+ment2/Results/Q4/q2_vary_1.png used on input line 287.
 (pdftex.def)             Requested size: 522.87218pt x 108.40472pt.
 
-Overfull \hbox (53.11716pt too wide) in paragraph at lines 158--159
+Overfull \hbox (53.11716pt too wide) in paragraph at lines 287--288
  [][] 
  []
 
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.23}
+) has been already used, duplicate ignored
 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.291 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+24}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.291 
+       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
+Q2_logL.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Resul
+ts/Q4/q2_mu_1.png>]
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_Mixc
-oeffbar_1.png, id=71, 578.16pt x 433.62pt>
+oeffbar_1.png, id=158, 578.16pt x 433.62pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2
 _Mixcoeffbar_1.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q2_
 Mixcoeffbar_1.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q2_Mixcoeffbar_1.png used on input line 170.
+ment2/Results/Q4/q2_Mixcoeffbar_1.png used on input line 299.
 (pdftex.def)             Requested size: 260.16959pt x 195.1272pt.
- [6pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
-) has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.174 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-12}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.174 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-q2_mu_1.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Resul
-ts/Q4/q2_vary_1.png>]
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/kmeans_
-random_compare.png, id=81, 578.16pt x 433.62pt>
+random_compare.png, id=160, 578.16pt x 433.62pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/km
 eans_random_compare.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/kme
 ans_random_compare.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/kmeans_random_compare.png used on input line 183.
+ment2/Results/Q4/kmeans_random_compare.png used on input line 312.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.25
+}) has been already used, duplicate ignored
 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.317 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+26}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.317 
+       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
+q2_vary_1.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Res
+ults/Q4/q2_Mixcoeffbar_1.png>]
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_mu_1
-.png, id=82, 1063.8144pt x 216.81pt>
+.png, id=171, 1063.8144pt x 216.81pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3
 _mu_1.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_
 mu_1.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q3_mu_1.png used on input line 193.
+ment2/Results/Q4/q3_mu_1.png used on input line 322.
 (pdftex.def)             Requested size: 531.9059pt x 108.40472pt.
 
-Overfull \hbox (62.15088pt too wide) in paragraph at lines 193--194
+Overfull \hbox (62.15088pt too wide) in paragraph at lines 322--323
  [][] 
  []
 
-[7pdfTeX warning (ext4): destination with the same identifier (name{figure.13})
- has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.197 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-14}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.197 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-q2_Mixcoeffbar_1.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignme
-nt2/Results/Q4/kmeans_random_compare.png>]
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_vary
-_1.png, id=93, 1059.4782pt x 216.81pt>
+_1.png, id=172, 1059.4782pt x 216.81pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3
 _vary_1.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/q3_
 vary_1.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/q3_vary_1.png used on input line 202.
+ment2/Results/Q4/q3_vary_1.png used on input line 331.
 (pdftex.def)             Requested size: 529.7378pt x 108.40472pt.
 
-Overfull \hbox (59.98277pt too wide) in paragraph at lines 202--203
+Overfull \hbox (59.98277pt too wide) in paragraph at lines 331--332
  [][] 
  []
 
+[16pdfTeX warning (ext4): destination with the same identifier (name{figure.27}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.341 \end{equation}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.28}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.341 \end{equation}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.29}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.341 \end{equation}
+                     </Users/anita/Documents/Grad_Second_Year/CSC2515/assignmen
+t2/Results/Q4/kmeans_random_compare.png> </Users/anita/Documents/Grad_Second_Ye
+ar/CSC2515/assignment2/Results/Q4/q3_mu_1.png> </Users/anita/Documents/Grad_Sec
+ond_Year/CSC2515/assignment2/Results/Q4/q3_vary_1.png>]
 
 ! LaTeX Error: \mathrm allowed only in math mode.
 
@@ -735,66 +933,47 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.217 ...an use these functions to compute \mathrm
+l.346 ...an use these functions to compute \mathrm
                                                   {log}$p(d|x)$.
 ? 
 
+LaTeX Warning: Reference `fig:err_rate' on page 17 undefined on input line 348.
+
+
+
 </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4
-_randConst_1.png, id=96, 578.16pt x 433.62pt>
+_randConst_1.png, id=183, 578.16pt x 433.62pt>
 File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4
 .4/q4_randConst_1.png Graphic file (type png)
 
 <use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.
 4/q4_randConst_1.png>
 Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/Q4.4/q4_randConst_1.png used on input line 222.
+ment2/Results/Q4/Q4.4/q4_randConst_1.png used on input line 351.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
- [8pdfTeX warning (ext4): destination with the same identifier (name{figure.15}
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--359
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 365.
+[17pdfTeX warning (ext4): destination with the same identifier (name{figure.30}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.226 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-16}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.226 
-       </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/
-q3_mu_1.png> </Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Resul
-ts/Q4/q3_vary_1.png>]
-</Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.4/q4
-_randConst_1_fig1.png, id=111, 578.16pt x 433.62pt>
-File: /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4
-.4/q4_randConst_1_fig1.png Graphic file (type png)
-
-<use /Users/anita/Documents/Grad_Second_Year/CSC2515/assignment2/Results/Q4/Q4.
-4/q4_randConst_1_fig1.png>
-Package pdftex.def Info: /Users/anita/Documents/Grad_Second_Year/CSC2515/assign
-ment2/Results/Q4/Q4.4/q4_randConst_1_fig1.png used on input line 231.
-(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 236.
- [9pdfTeX warning (ext4): destination with the same identifier (name{figure.17}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.236 \end{document}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{figure.18}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.236 \end{document}
+l.365 \end{document}
                      </Users/anita/Documents/Grad_Second_Year/CSC2515/assignmen
-t2/Results/Q4/Q4.4/q4_randConst_1.png> </Users/anita/Documents/Grad_Second_Year
-/CSC2515/assignment2/Results/Q4/Q4.4/q4_randConst_1_fig1.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 236.
-
-(./assignment2_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 236.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 236.
+t2/Results/Q4/Q4.4/q4_randConst_1.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 365.
+ (./assignment2_report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 365.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 365.
 Package rerunfilecheck Info: File `assignment2_report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -804,16 +983,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 236.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 365.
  ) 
 Here is how much of TeX's memory you used:
- 7811 strings out of 493117
- 116955 string characters out of 6135433
- 210886 words of memory out of 5000000
- 11129 multiletter control sequences out of 15000+600000
+ 7905 strings out of 493117
+ 118295 string characters out of 6135433
+ 210952 words of memory out of 5000000
+ 11190 multiletter control sequences out of 15000+600000
  6928 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,8n,28p,841b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,8n,28p,841b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -823,10 +1002,10 @@ sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
 ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
 al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
 l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on assignment2_report.pdf (9 pages, 4601881 bytes).
+Output written on assignment2_report.pdf (17 pages, 6464919 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 240 PDF objects out of 1000 (max. 8388607)
+ 152 compressed objects within 2 object streams
+ 62 named destinations out of 1000 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 
