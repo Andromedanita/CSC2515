@@ -28,6 +28,28 @@
 
 \section*{Question 3}
 
+% Q3.1
+\subsection*{3.1}
+We want to show the result of the runs for both NN and CNN methods with the default parameter values. The figures are shown below:
+% nn
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{Q31_nn_report.png}
+	\caption{NN method used, eps=0.01, momentum=0.0, batch size=100}
+	\label{fig:}
+\end{figure}
+
+% cnn
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.32]{cnn_eps01.png}
+	\caption{CNN method used, eps=0.1, momentum=0.0, batch size=100}
+	\label{fig:}
+\end{figure}
+
+As it is shown in the figures, validation set accuracy is always smaller than the training set which makes sense since we are training the model based on the training set and not on the validation set. As a result, the cross-entropy of validation set is also always larger than that of the training set meaning the model works better for the training set than the validation (since smaller cross-entropy means better results).
+
+
 % Q3.2
 \subsection*{3.2}
 \subsubsection*{NN}
@@ -243,7 +265,66 @@ Looking at the figures above, we see that batch size=100 has the best results si
 
 %%%%  Q3.3 %%%%
 \subsection*{3.3}
-Keeping the momentum fixed and equal to 0.9,
+\subsubsection*{NN}
+Keeping the momentum fixed and equal to 0.9, and having eps = 0.01 for NN, below are the results I got when changing the number of hidden units for each layer. The three combinations I tried are [16,32], [32,32] and [32,16] to see if it matters if the first layer has more units, or if it matters if they are the same or the second layer has more units. Results are shown below:
+
+% [16,32]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q33_hidden_16_32.png}
+	\caption{\textbf{[16,32],epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% [32,32]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q33_hidden_32_32.png}
+	\caption{\textbf{[32,32],epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% [32,16]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Q33_hidden_32_16.png}
+	\caption{\textbf{[32,16],epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+As we see above, the accuracy of the validation set is more or less the same when using different number of units in the hidden layers and the small variation could be due to the randomness of the weight initialization. Cross-entropy of validation set starts increasing when there is the same number of units in both 
+
+
+\subsubsection*{CNN}
+
+% [,]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{.png}
+	\caption{\textbf{[,],epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% [,]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{.png}
+	\caption{\textbf{[],epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
+
+% [,]
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{.png}
+	\caption{\textbf{[,],epsilon=0.01, momentum=0.0, batch size=100}}
+	\label{fig:}
+\end{figure}
+
 
 
 
