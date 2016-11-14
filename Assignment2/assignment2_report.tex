@@ -435,9 +435,18 @@ Using these values for the number of hidden values and filters, I got the result
 
 The first layer we are looking at for the nn method, we can see human face fewtures in the images. We can see nose and eyes in some of them which means that in nn method it tries to find parts of the whole image in this case looks for eyes or nose. However, in cnn method,  we can see that we cannot distinguish any face features and we can only see vertical and horizontal lines which means that this layer is looking for vertical and horizontal lines only. This is the difference between the two methods.
 
+CNN method is better than NN in that it is more generalizable. This is because NN method can distinguish particular and specific features such eyes and nose. So in my opinion if we tilt the image or if the images are not all aligned it would be harder for NN to distinguish between images and to classify them. However, in CNN method, we have many different filters in which each filter looks for very generalizable features such as having vertical lines or horizontal lines or colour, which makes distinguishing of images better than NN method.
 
 % Q3.5
 \subsection*{3.5}
+Below are three images of bad images where the maximum prediction of the image is less than 0.55:
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Q35_imshow.png}
+	\caption{Bad predictions where highest prediction of each image \< 0.55.}
+	\label{fig:}
+\end{figure}
+
 
 % Q4
 \section*{Question 4}
@@ -520,6 +529,8 @@ This can be seen in Figure \ref{fig:q4.3_mu} below.
 	\caption{}
 	\label{fig:q4.3_mu}
 \end{figure}
+
+The speed of means method is faster than the random method and this is due to .
 
 % Q4.4
 \subsection*{4.4}
