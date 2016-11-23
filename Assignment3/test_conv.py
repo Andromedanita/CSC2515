@@ -23,8 +23,8 @@ def load_image():
 
 
 nn = Classifier(
-    layers=[Convolution("Rectifier", channels=8, kernel_shape=(3,3)),Layer("Softmax", units=7), Layer("Softmax", units=7)],
-    learning_rate=0.02,n_iter=50)
+    layers=[Convolution("Rectifier", channels=8, kernel_shape=(3,3)),Layer('Softmax')],
+    learning_rate=0.01,n_iter=50)
 
 all_pixels = load_image()
 
@@ -34,6 +34,21 @@ with open('/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/tra
 
 your_list = np.array(your_list)
 ylabel    = your_list[1:,1].astype(int)[:num]
-    
-nn.fit(all_pixels, ylabel)
+
+# balancing weights on classes
+#w_train = np.array((all_pixels.shape[0],))
+w_train = np.zeros(num)
+
+w_train[ylabel == 1] = 0.414
+w_train[ylabel == 2] = 0.448
+w_train[ylabel == 3] = 1.25
+w_train[ylabel == 4] = 2.155
+w_train[ylabel == 5] = 0.523
+w_train[ylabel == 6] = 9.61
+w_train[ylabel == 7] = 46.05
+w_train[ylabel == 8] = 18.23 
+
+nn.fit(all_pixels, ylabel, w_train)
+
+#nn.fit(all_pixels, ylabel)
 nn.score(all_pixels, ylabel)
