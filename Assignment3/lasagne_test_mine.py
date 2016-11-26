@@ -51,13 +51,20 @@ def build_cnn(input_var=None):
                                         input_var=input_var)
     # This time we do not apply input dropout, as it tends to work less well
     # for convolutional layers.
+    
+    
+    weights = np.ones((32,3,5,5))
 
     # Convolutional layer with 32 kernels of size 5x5. Strided and padded
     # convolutions are supported as well; see the docstring.
     network = lasagne.layers.Conv2DLayer(
             network, num_filters=32, filter_size=(5, 5),
             nonlinearity=lasagne.nonlinearities.rectify,
-            W=lasagne.init.GlorotUniform())
+            W=weights)
+    #       W=lasagne.init.GlorotUniform())
+            
+            
+   
 
     # Max-pooling layer of factor 2 in both dimensions:
     network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
@@ -84,7 +91,7 @@ def build_cnn(input_var=None):
 
 
 # ############################# Batch iterator ###############################
-
+'''
 def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
     assert len(inputs) == len(targets)
     if shuffle:
@@ -96,11 +103,61 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
         else:
             excerpt = slice(start_idx, start_idx + batchsize)
         yield inputs[excerpt], targets[excerpt]
+'''
 
 
+
+def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
+    assert len(inputs) == len(targets)
+    
+    class1   = np.where(targets == 1)[0]
+    class2   = np.where(targets == 2)[0]
+    class3   = np.where(targets == 3)[0]
+    class4   = np.where(targets == 4)[0]
+    class5   = np.where(targets == 5)[0]
+    class6   = np.where(targets == 6)[0]
+    class7   = np.where(targets == 7)[0]
+    class8   = np.where(targets == 8)[0]
+    
+    print (" shape target", np.shape(targets))
+    
+    print ("class 1 shape=", np.shape(class1))
+    print ("class1  = ", class1)
+    
+    #train_tmp = np.empty(batchsize)
+    
+    #print ("shape of temp train = ", np.shape(train_tmp))
+    
+    train_tmp = np.concatenate((class1[np.random.random_integers(0, len(class1)-1, batchsize/8)],
+                                class2[np.random.random_integers(0, len(class2)-1, batchsize/8)],
+                                class3[np.random.random_integers(0, len(class3)-1, batchsize/8)],
+                                class4[np.random.random_integers(0, len(class4)-1, batchsize/8)],
+                                class5[np.random.random_integers(0, len(class5)-1, batchsize/8)],
+                                class6[np.random.random_integers(0, len(class6)-1, batchsize/8)],
+                                class7[np.random.random_integers(0, len(class7)-1, batchsize/8)],
+                                class8[np.random.random_integers(0, len(class8)-1, batchsize/8)]))
+    
+    
+    
+    print ("shape train temp = ", np.shape(train_tmp))
+    print ("train temp  = ", train_tmp)
+    
+    
+    if shuffle:
+        #indices = np.arange(len(inputs))
+        indices = train_tmp
+        np.random.shuffle(indices)
+    for start_idx in range(0, len(inputs) - batchsize + 1, batchsize):
+        #if shuffle:
+        #excerpt = indices[start_idx:start_idx + batchsize]
+        #else:
+        #excerpt = slice(start_idx, start_idx + batchsize)
+        #print ("excerpt = ", excerpt)
+        #yield inputs[excerpt], targets[excerpt]
+        yield inputs[train_tmp] , targets[train_tmp]
 # ############################## Main program ################################
 
-def main(num_epochs=20):
+def main(num_epochs=10):
     # Load the dataset
     print("Loading data...")
     #X_train, y_train, X_val, y_val, X_test, y_test = load_dataset()
@@ -130,7 +187,7 @@ def main(num_epochs=20):
     # Descent (SGD) with Nesterov momentum, but Lasagne offers plenty more.
     params  = lasagne.layers.get_all_params(network, trainable=True)
     updates = lasagne.updates.nesterov_momentum(
-            loss, params, learning_rate=0.01, momentum=0.9)
+            loss, params, learning_rate=0.001, momentum=0.9)
 
     # Create a loss expression for validation/testing. The crucial difference
     # here is that we do a deterministic forward pass through the network,
@@ -162,15 +219,19 @@ def main(num_epochs=20):
         train_err2 = 0
         train_acc2 = 0
         start_time    = time.time()
-        for batch in iterate_minibatches(X_train, y_train, 1, shuffle=True):
+        for batch in iterate_minibatches(X_train, y_train, 8, shuffle=True):
             inputs, targets = batch
             train_err      += train_fn(inputs, targets)
             #err, acc = val_fn(inputs, targets)
             #train_err2 += err
             #train_acc2 += acc
             train_batches  += 1
-            #print ("batch = ", batch)
         print ("train error is:",train_err)
+        plt.plot(epoch, train_err,"bo")
+        #plt.plot(epoch, train_err,"b")
+        plt.draw()
+        #plt.pause(0.0001)
+        
 
         
         #print("Epoch {} of {} took {:.3f}s".format(epoch + 1, num_epochs, time.time() - start_time))
@@ -225,9 +286,10 @@ def main(num_epochs=20):
     # with np.load('model.npz') as f:
     #     param_values = [f['arr_%d' % i] for i in range(len(f.files))]
     # lasagne.layers.set_all_param_values(network, param_values)
-
+    #plt.xlim(0.5,100)
 
 if __name__ == '__main__':
+    plt.ion()
     main()
 
 
