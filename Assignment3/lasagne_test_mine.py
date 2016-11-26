@@ -60,7 +60,8 @@ def build_cnn(input_var=None):
     network = lasagne.layers.Conv2DLayer(
             network, num_filters=32, filter_size=(5, 5),
             nonlinearity=lasagne.nonlinearities.rectify,
-            W=weights)
+            W=lasagne.init.GlorotUniform())
+    #        W=weights)
     #       W=lasagne.init.GlorotUniform())
             
             
@@ -73,6 +74,7 @@ def build_cnn(input_var=None):
     network = lasagne.layers.Conv2DLayer(
             network, num_filters=32, filter_size=(5, 5),
             nonlinearity=lasagne.nonlinearities.rectify)
+            
     network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
 
     # A fully-connected layer of 256 units with 50% dropout on its inputs:
@@ -119,35 +121,27 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
     class7   = np.where(targets == 7)[0]
     class8   = np.where(targets == 8)[0]
     
-    print (" shape target", np.shape(targets))
     
-    print ("class 1 shape=", np.shape(class1))
-    print ("class1  = ", class1)
     
-    #train_tmp = np.empty(batchsize)
-    
-    #print ("shape of temp train = ", np.shape(train_tmp))
-    
-    train_tmp = np.concatenate((class1[np.random.random_integers(0, len(class1)-1, batchsize/8)],
-                                class2[np.random.random_integers(0, len(class2)-1, batchsize/8)],
-                                class3[np.random.random_integers(0, len(class3)-1, batchsize/8)],
-                                class4[np.random.random_integers(0, len(class4)-1, batchsize/8)],
-                                class5[np.random.random_integers(0, len(class5)-1, batchsize/8)],
-                                class6[np.random.random_integers(0, len(class6)-1, batchsize/8)],
-                                class7[np.random.random_integers(0, len(class7)-1, batchsize/8)],
-                                class8[np.random.random_integers(0, len(class8)-1, batchsize/8)]))
+
     
     
     
-    print ("shape train temp = ", np.shape(train_tmp))
-    print ("train temp  = ", train_tmp)
-    
-    
-    if shuffle:
-        #indices = np.arange(len(inputs))
-        indices = train_tmp
-        np.random.shuffle(indices)
     for start_idx in range(0, len(inputs) - batchsize + 1, batchsize):
+        
+        train_tmp = np.concatenate((class1[np.random.randint(0, len(class1), batchsize/8)],
+                                    class2[np.random.randint(0, len(class2), batchsize/8)],
+                                    class3[np.random.randint(0, len(class3), batchsize/8)],
+                                    class4[np.random.randint(0, len(class4), batchsize/8)],
+                                    class5[np.random.randint(0, len(class5), batchsize/8)],
+                                    class6[np.random.randint(0, len(class6), batchsize/8)],
+                                    class7[np.random.randint(0, len(class7), batchsize/8)],
+                                    class8[np.random.randint(0, len(class8), batchsize/8)]))
+                                    
+        if shuffle:
+            #indices = np.arange(len(inputs))
+            indices = train_tmp
+            np.random.shuffle(indices)
         #if shuffle:
         #excerpt = indices[start_idx:start_idx + batchsize]
         #else:
@@ -157,7 +151,7 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
         yield inputs[train_tmp] , targets[train_tmp]
 # ############################## Main program ################################
 
-def main(num_epochs=10):
+def main(num_epochs=20):
     # Load the dataset
     print("Loading data...")
     #X_train, y_train, X_val, y_val, X_test, y_test = load_dataset()
@@ -180,13 +174,15 @@ def main(num_epochs=10):
     prediction = lasagne.layers.get_output(network)
     loss = lasagne.objectives.categorical_crossentropy(prediction, target_var)
     loss = loss.mean()
+    
+    accuracy_val = lasagne.objectives.categorical_accuracy(prediction, target_var, top_k=1)
     # We could add some weight decay as well here, see lasagne.regularization.
 
     # Create update expressions for training, i.e., how to modify the
     # parameters at each training step. Here, we'll use Stochastic Gradient
     # Descent (SGD) with Nesterov momentum, but Lasagne offers plenty more.
     params  = lasagne.layers.get_all_params(network, trainable=True)
-    updates = lasagne.updates.nesterov_momentum(
+    updates = lasagne.updates.momentum(
             loss, params, learning_rate=0.001, momentum=0.9)
 
     # Create a loss expression for validation/testing. The crucial difference
@@ -200,10 +196,17 @@ def main(num_epochs=10):
     # As a bonus, also create an expression for the classification accuracy:
     #test_acc = T.mean(T.eq(T.argmax(test_prediction, axis=1), target_var),
     #                  dtype=theano.config.floatX)
+    
+    train_acc = T.mean(T.eq(T.argmax(prediction, axis=1), target_var),
+                                        dtype=theano.config.floatX)
 
     # Compile a function performing a training step on a mini-batch (by giving
     # the updates dictionary) and returning the corresponding training loss:
     train_fn = theano.function([input_var, target_var], loss, updates=updates)
+    
+    val_fn = theano.function([input_var, target_var], [loss, train_acc])
+    
+    #train_fn_acc = theano.function([input_var, target_var], accuracy_val, updates=updates)
 
     # Compile a second function computing the validation loss and accuracy:
     #val_fn = theano.function([input_var, target_var], [test_loss, test_acc])
@@ -216,19 +219,23 @@ def main(num_epochs=10):
         print ("Epoch is:", epoch)
         train_err     = 0
         train_batches = 0
-        train_err2 = 0
         train_acc2 = 0
+        train_err2 = 0
+
+
         start_time    = time.time()
-        for batch in iterate_minibatches(X_train, y_train, 8, shuffle=True):
+        for batch in iterate_minibatches(X_train, y_train, 160, shuffle=True):
             inputs, targets = batch
             train_err      += train_fn(inputs, targets)
-            #err, acc = val_fn(inputs, targets)
-            #train_err2 += err
-            #train_acc2 += acc
+            err, acc = val_fn(inputs, targets)
+            train_acc2 += acc
+            train_err2 += err
+
             train_batches  += 1
         print ("train error is:",train_err)
+        print ("train acc is: ", train_acc2)
+        #print ("train accurcay is:", train_acc2 )
         plt.plot(epoch, train_err,"bo")
-        #plt.plot(epoch, train_err,"b")
         plt.draw()
         #plt.pause(0.0001)
         
