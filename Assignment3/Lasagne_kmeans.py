@@ -15,7 +15,7 @@ from util import *
 import matplotlib.pyplot as plt
 plt.ion()
 
-num = 100
+num = 500
 
 
 
@@ -23,7 +23,9 @@ num = 100
 ##### loading data and labels ####
 def load_image():
     folder = "D:/UofT2016/Fall2016/MachineLearning/Project/data/train/"
-    filename = os.listdir(folder)[:num]
+    start_num=4400
+    end_num=7000
+    filename = os.listdir(folder)[start_num:end_num]
     num_figs = len(filename)
     all_pixels = np.zeros((num_figs, 16384))  # np.zeros((num_figs, 16384,3))
     for i in range(num_figs):
@@ -38,9 +40,10 @@ def load_label():
     with open('D:/UofT2016/Fall2016/MachineLearning/Project/data/train.csv', 'rb') as f:
         reader = csv.reader(f)
         your_list = list(reader)
-
+    start_num = 4400
+    end_num = 7000
     your_list = np.array(your_list)
-    ylabel = your_list[1:, 1].astype(int)[:num]
+    ylabel = your_list[1:, 1].astype(int)[start_num:end_num]
     # ylabel    = np.array(ylabel, dtype=float32)
     return ylabel
 
@@ -68,7 +71,7 @@ def KMeans(x, K, iters):
   """
 
   print("just entered kmeans")
-  x
+
   N = x.shape[1]
   perm = np.arange(N)
   np.random.shuffle(perm)
@@ -78,6 +81,10 @@ def KMeans(x, K, iters):
     print('Kmeans iteration = %04d' % (ii+1))
     for k in xrange(K):
         dist[k, :] = distmat(means[:, k].reshape(-1, 1), x)
+        print("dist shape" , dist.shape)
+        print("x shape is ", x.shape)
+        print("means shape is", means.shape)
+
 
     assigned_class = np.argmin(dist, axis=0)
     for k in xrange(K):
@@ -261,7 +268,6 @@ def q2():
     plt.bar(np.arange(len(pii)),pii)
 
 
-"""
 
 
 def lasagne_kmeans_mog():
@@ -339,13 +345,14 @@ def lasagne_kmeans_mog():
         p_7, mu_7, vary_7, log_likelihood_train_7 = mogEM(
             x_train_class7.T, K, iters, randConst=randConst, minVary=minVary)
 
-       # p_8, mu_8, vary_8, log_likelihood_train_8 = mogEM(
-        #    x_train_class8.T, K, iters, randConst=randConst, minVary=minVary)
+        p_8, mu_8, vary_8, log_likelihood_train_8 = mogEM(
+            x_train_class8.T, K, iters, randConst=randConst, minVary=minVary)
+
 
     # Compute the probability P(d|x), classify examples, and compute error rate
         # Hints: using (x_train, y_train), (x_valid, y_valid), (x_test, y_test)
         # to compute error rates, you may want to use mogLogLikelihood function
-
+"""
     log_likelihood_train_1 = mogLogLikelihood(
         p_1, mu_1, vary_1, x_train.T) + log_likelihood_class[0]
 
@@ -367,123 +374,54 @@ def lasagne_kmeans_mog():
     log_likelihood_train_7 = mogLogLikelihood(
         p_7, mu_7, vary_7, x_train.T) + log_likelihood_class[6]
 
-    #log_likelihood_train_8 = mogLogLikelihood(
-     #   p_8, mu_8, vary_8, x_train.T) + log_likelihood_class[7]
+    log_likelihood_train_8 = mogLogLikelihood(
+        p_8, mu_8, vary_8, x_train.T) + log_likelihood_class[7]
+
+"""
+
+        # predict_label_train = (log_likelihood_train_a <
+        #              log_likelihood_train_h).astype(float)
 
 
 
-       # predict_label_train = (log_likelihood_train_a <
-                 #              log_likelihood_train_h).astype(float)
-
-
-
-       # errorTrain[t] = np.sum(
+        # errorTrain[t] = np.sum(
         #    (predict_label_train != y_train).astype(float)) / y_train.shape[0]
 
         #errorValidation[t] = np.sum(
-         #   (predict_label_valid != y_valid).astype(float)) / y_valid.shape[0]
+        #   (predict_label_valid != y_valid).astype(float)) / y_valid.shape[0]
 
-       # errorTest[t] = np.sum(
-        #    (predict_label_test != y_test).astype(float)) / y_test.shape[0]
+        # errorTest[t] = np.sum(
+    #(predict_label_test != y_test).astype(float)) / y_test.shape[0]
 
-   # print ("Training error rate = %.5f" , errorTrain[t])
+    # print ("Training error rate = %.5f" , errorTrain[t])
     #print ("Validation error rate = %.5f" , errorValidation[t])
     #print ("Testing error rate = %.5f" , errorTest[t])
 
     # Plot the error rate
-    plt.figure(0)
-    plt.clf()
+    #plt.figure(0)
+    #plt.clf()
     #-------------------- Add your code here -------------------------------
     #------------------- Answers ---------------------
     # to be removed before release
-    plt.plot(numComponents, errorTrain, 'r', label='Training')
-    plt.plot(numComponents, errorValidation, 'g', label='Validation')
-    plt.plot(numComponents, errorTest, 'b', label='Testing')
-    plt.xlabel('Number of Mixture Components')
-    plt.ylabel('Error Rate')
-    plt.legend()
-    plt.draw()
-    plt.pause(0.0001)
-
-    """
-
-
-
-
-
-
-
-
+    #plt.plot(numComponents, errorTrain, 'r', label='Training')
+    #plt.plot(numComponents, errorValidation, 'g', label='Validation')
+    #plt.plot(numComponents, errorTest, 'b', label='Testing')
+    #plt.xlabel('Number of Mixture Components')
+    #plt.ylabel('Error Rate')
+    #plt.legend()
+    #plt.draw()
+    #plt.pause(0.0001)
 
 
 
 
 if __name__ == '__main__':
     #-------------------------------------------------------------------------
-    #lasagne_kmeans_mog()
-    q2()
+    lasagne_kmeans_mog()
+    #q2()
     raw_input('Press Enter to continue.')
 
 
 
 
-
-
-
-"""
-######################  main ##################################
-def main():
-  K = 7
-  iters = 10
-  inputs_train=load_image()
-  print("here after loading images")
-  target_train=load_label()
-  print("here after loading labels")
-  print("labels are ", target_train)
-
-  means = KMeans(inputs_train, K, iters)
-  print("after computing means")
-  #ShowMeans(means, 0)
-  print("means shape is ", means.shape)
-  print("means are ", means)
-
-  x_train_class1 = np.where(target_train == 1)[0]
-  x_train_class2 = np.where(target_train == 2)[0]
-  x_train_class3 = np.where(target_train == 3)[0]
-  x_train_class4 = np.where(target_train == 4)[0]
-  x_train_class5 = np.where(target_train == 5)[0]
-  x_train_class6 = np.where(target_train == 6)[0]
-  x_train_class7 = np.where(target_train == 7)[0]
-  x_train_class8 = np.where(target_train == 8)[0]
-
-  num_class1_train = x_train_class1.shape[1]
-  num_class2_train = x_train_class2.shape[1]
-  num_class3_train = x_train_class3.shape[1]
-  num_class4_train = x_train_class4.shape[1]
-  num_class5_train = x_train_class5.shape[1]
-  num_class6_train = x_train_class6.shape[1]
-  num_class7_train = x_train_class7.shape[1]
-  num_class8_train = x_train_class8.shape[1]
-
-  log_likelihood_class = np.log(
-      [num_class1_train, num_class2_train, num_class3_train, num_class4_train, num_class5_train,
-       num_class6_train, num_class7_train, num_class8_train]) -np.log(num_class1_train + num_class2_train +
-       num_class3_train+ num_class4_train+num_class5_train+ num_class6_train+ num_class7_train+ num_class8_train)
-
-
-
-
-  errorTrain = np.zeros(T)
-  #errorTest = np.zeros(T)
-  #errorValidation = np.zeros(T)
-
-  log_likelihood_class = np.log(
-      [num_anger_train, num_happy_train]) - np.log(num_anger_train + num_happy_train)
-
-
-
-if __name__ == '__main__':
-  main()
-
-"""
 
