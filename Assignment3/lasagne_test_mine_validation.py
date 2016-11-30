@@ -168,15 +168,15 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
 
 # ############################## Main program ################################
 
-def main(num_epochs=20):
+def main(num_epochs=3):
     # Load the dataset
     print("Loading data...")
     #X_train, y_train, X_val, y_val, X_test, y_test = load_dataset()
 
-    X_train, y_train = load_image(0,7000,"/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/train/"), load_label(0,7000)
+    X_train, y_train = load_image(0,500,"/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/train/"), load_label(0,500)
     X_val, y_val = load_image(0,500, "/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/train/"), load_label(0,500)
     
-    X_test = load_image(0,970,"/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/val/")
+    #X_test = load_image(0,10,"/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/val/")
     
     y_train -= 1
     y_val   -= 1
@@ -234,6 +234,8 @@ def main(num_epochs=20):
     
     val_fn = theano.function([input_var, target_var], [test_loss, test_acc])
 
+
+    dd1_list = []
     # Finally, launch the training loop.
     print("Starting training...")
     # We iterate over epochs:
@@ -259,9 +261,9 @@ def main(num_epochs=20):
         val_batches = 0
         for batch in iterate_minibatches(X_val, y_val, 16, shuffle=False):
             inputs, targets = batch
-            print ("targets in each batch in validation: ", targets)
+            #print ("targets in each batch in validation: ", targets)
             err, acc = val_fn(inputs, targets)
-            print ("err and acc in each batch in validation: ", err, acc)
+            #print ("err and acc in each batch in validation: ", err, acc)
             val_err += err
             val_acc += acc
             val_batches += 1
@@ -286,7 +288,19 @@ def main(num_epochs=20):
             val_acc / val_batches * 100))
         print ("-------")
 
-    #pval = predict_function(X_test)
+        dd1 = val_acc / val_batches * 100
+        dd1_list.append(dd1)
+    np.savetxt("validation_acc_0_500_allimages.dat",dd1_list,fmt="%.9e")
+
+    pval = predict_function(X_test)
+    print ("pval final", pval)
+
+    image_id = np.arange(0,10,1) + 1
+    data = np.column_stack((image_id,pval))
+    with open('file.csv','w') as f:
+        w = csv.writer(f)
+        w.writerow(['ID','prediction'])
+        w.writerows(data)
 
     '''
 
