@@ -14,8 +14,8 @@ import csv
 #num = int(sys.argv[1])
 
 ##### loading data and labels ####
-def load_image(start_label, end_label):
-    folder = "/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/train/"
+def load_image(start_label, end_label, folder):
+    #folder = "/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/train/"
     filename = os.listdir(folder)[start_label:end_label]
     num_figs = len(filename)
     all_pixels = np.zeros((num_figs,3,128,128))  #np.zeros((num_figs, 16384,3))
@@ -71,6 +71,7 @@ def build_cnn(input_var=None):
     # Max-pooling layer of factor 2 in both dimensions:
     network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
 
+    '''
     # Another convolution with 32 5x5 kernels, and another 2x2 pooling:
     network = lasagne.layers.Conv2DLayer(
             network, num_filters=32, filter_size=(5, 5),
@@ -83,11 +84,11 @@ def build_cnn(input_var=None):
             lasagne.layers.dropout(network, p=.5),
             num_units=256,
             nonlinearity=lasagne.nonlinearities.rectify)
-
-
+            
+    '''
     # And, finally, the 10-unit output layer with 50% dropout on its inputs:
     network = lasagne.layers.DenseLayer(
-            lasagne.layers.dropout(network, p=.1),
+            lasagne.layers.dropout(network, p=.5),
             num_units=8,
             nonlinearity=lasagne.nonlinearities.softmax)
             
@@ -148,15 +149,21 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
                                     class6[np.random.randint(0, len(class6), batchsize/8)],
                                     class7[np.random.randint(0, len(class7), batchsize/8)]))
 
+        '''
         
-        #print (":7777777", class7[np.random.randint(0, len(class7), batchsize/8)])
-        #print (":8888888", class8[np.random.randint(0, len(class8), batchsize/8)])
-                                    
+        train_tmp = np.concatenate((class0[np.random.randint(0, len(class0), batchsize/8)],
+                                    class1[np.random.randint(0, len(class1), batchsize/8)],
+                                    class2[np.random.randint(0, len(class2), batchsize/8)],
+                                    class3[np.random.randint(0, len(class3), batchsize/8)],
+                                    class4[np.random.randint(0, len(class4), batchsize/8)],
+                                    class5[np.random.randint(0, len(class5), batchsize/8)],
+                                    class6[np.random.randint(0, len(class6), batchsize/8)]))
+
+        '''
         if shuffle:
             indices = train_tmp
             np.random.shuffle(indices)
-
-        #print  ("expected target values: ", targets[train_tmp])
+        
         yield inputs[train_tmp] , targets[train_tmp]
 
 # ############################## Main program ################################
@@ -166,8 +173,10 @@ def main(num_epochs=20):
     print("Loading data...")
     #X_train, y_train, X_val, y_val, X_test, y_test = load_dataset()
 
-    X_train, y_train = load_image(2900,3400), load_label(2900,3400)
-    X_val, y_val = load_image(0,200), load_label(0,200)
+    X_train, y_train = load_image(0,7000,"/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/train/"), load_label(0,7000)
+    X_val, y_val = load_image(0,500, "/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/train/"), load_label(0,500)
+    
+    X_test = load_image(0,970,"/Users/anita/Documents/Grad_Second_Year/CSC2515/assignment3/411a3/val/")
     
     y_train -= 1
     y_val   -= 1
@@ -216,8 +225,8 @@ def main(num_epochs=20):
     test_acc = T.mean(T.eq(T.argmax(test_prediction, axis=1), target_var),
                       dtype=theano.config.floatX)
     
-    train_acc = T.mean(T.eq(T.argmax(prediction, axis=1), target_var),
-                                        dtype=theano.config.floatX)
+    #train_acc = T.mean(T.eq(T.argmax(prediction, axis=1), target_var),
+    #                                    dtype=theano.config.floatX)
 
     # Compile a function performing a training step on a mini-batch (by giving
     # the updates dictionary) and returning the corresponding training loss:
@@ -234,15 +243,13 @@ def main(num_epochs=20):
         train_err     = 0
         train_batches = 0
 
-
         start_time    = time.time()
-        for batch in iterate_minibatches(X_train, y_train, 160, shuffle=True):
+        for batch in iterate_minibatches(X_train, y_train, 16, shuffle=True):
             inputs, targets = batch
             train_err      += train_fn(inputs, targets)
             train_batches  += 1
         
         print ("train error is:",train_err)
-        #print ("shape of prediction val = ", np.shape(pval))
         
 
 
@@ -250,47 +257,43 @@ def main(num_epochs=20):
         val_err = 0
         val_acc = 0
         val_batches = 0
-        for batch in iterate_minibatches(X_val, y_val, 80, shuffle=False):
+        for batch in iterate_minibatches(X_val, y_val, 16, shuffle=False):
             inputs, targets = batch
+            print ("targets in each batch in validation: ", targets)
             err, acc = val_fn(inputs, targets)
+            print ("err and acc in each batch in validation: ", err, acc)
             val_err += err
             val_acc += acc
             val_batches += 1
         
-        pval = predict_function(inputs)
-        print ("shape of prediction val = ", np.shape(pval))
-        print ("Prediction val = ", pval)
+        print ("-------")
+        print ("validation batch is: ", val_batches)
+        print ("val_err .......", val_err)
+        print ("-------")
+        
+        #pval = predict_function(inputs)
+        #print ("shape of prediction val = ", np.shape(pval))
+        #print ("Prediction val = ", pval)
 
         # printing the results
+        
+        print ("-------")
         print("Epoch {} of {} took {:.3f}s".format(
             epoch + 1, num_epochs, time.time() - start_time))
         print("  training loss:\t\t{:.6f}".format(train_err / train_batches))
         print("  validation loss:\t\t{:.6f}".format(val_err / val_batches))
         print("  validation accuracy:\t\t{:.2f} %".format(
             val_acc / val_batches * 100))
+        print ("-------")
 
-
-    print ("network params: ", lasagne.layers.get_all_params(network))
-    print ("network values: ", lasagne.layers.get_all_param_values(network))
-    print ("mean weights: ", np.mean(lasagne.layers.get_all_param_values(network)[0]))
+    #pval = predict_function(X_test)
 
     '''
-    # After training, we compute and print the test error:
-    test_err = 0
-    test_acc = 0
-    test_batches = 0
-    for batch in iterate_minibatches(X_test, y_test, 500, shuffle=False):
-        inputs, targets = batch
-        err, acc = val_fn(inputs, targets)
-        test_err += err
-        test_acc += acc
-        test_batches += 1
-    print("Final results:")
-    print("  test loss:\t\t\t{:.6f}".format(test_err / test_batches))
-    print("  test accuracy:\t\t{:.2f} %".format(
-        test_acc / test_batches * 100))
 
-    '''
+    #print ("network params: ", lasagne.layers.get_all_params(network))
+    #print ("network values: ", lasagne.layers.get_all_param_values(network))
+    #print ("mean weights: ", np.mean(lasagne.layers.get_all_param_values(network)[0]))
+
     # Optionally, you could now dump the network weights to a file like this:
     # np.savez('model.npz', *lasagne.layers.get_all_param_values(network))
     #
@@ -299,7 +302,7 @@ def main(num_epochs=20):
     #     param_values = [f['arr_%d' % i] for i in range(len(f.files))]
     # lasagne.layers.set_all_param_values(network, param_values)
     #plt.xlim(0.5,100)
-
+    '''
 if __name__ == '__main__':
     plt.ion()
     main()
